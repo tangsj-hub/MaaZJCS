@@ -1,0 +1,57 @@
+{
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "/sample/resource/pipeline/*.json",
+                "/sample/resource/pipeline/*.jsonc",
+                "/sample/resource/default_pipeline.json"
+            ],
+            "url": "/tools/pipeline.schema.json"
+        },
+        {
+            "fileMatch": ["/sample/interface.json", "/sample/interface.jsonc"],
+            "url": "/tools/interface.schema.json"
+        }
+    ],
+    "[json]": {
+        "editor.formatOnSave": true,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "editor.indentSize": "tabSize",
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "[yaml]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "editor.autoIndent": "advanced",
+        "diffEditor.ignoreTrimWhitespace": false
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+    },
+    "cpplint.excludes": ["3rdparty", "build", "out"],
+    "cpplint.filters": [
+        "-legal/copyright",
+        "-whitespace/line_length",
+        "-whitespace/comments",
+        "-whitespace/braces",
+        "-whitespace/newline",
+        "-whitespace/indent",
+        "-readability/braces",
+        "-readability/inheritance",
+        "-readability/todo",
+        "-build/c++11",
+        "-build/include_subdir",
+        "-build/namespaces",
+        "-build/include_what_you_use",
+        "-runtime/references",
+        "-runtime/string",
+        "-runtime/indentation_namespace"
+    ],
+    "python.analysis.extraPaths": ["./source/binding/Python"],
+    "editor.formatOnSave": true,
+    "clangd.arguments": ["--header-insertion=never"]
+}

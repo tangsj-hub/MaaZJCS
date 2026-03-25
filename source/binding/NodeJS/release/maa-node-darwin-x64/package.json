@@ -1,0 +1,19 @@
+{
+    "name": "@maaxyz/maa-node-darwin-x64",
+    "main": "./MaaNode.node",
+    "exports": {
+        ".": "./MaaNode.node",
+        "./server": "./MaaNodeServer.node"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/MaaXYZ/MaaFramework.git"
+    },
+    "scripts": {},
+    "os": [
+        "darwin"
+    ],
+    "cpu": [
+        "x64"
+    ]
+}

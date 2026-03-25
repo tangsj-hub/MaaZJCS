@@ -1,0 +1,30 @@
+#pragma once
+
+#include "Common/Conf.h"
+#include "Controller/ControllerAgent.h"
+#include "Resource/PipelineTypes.h"
+#include "Tasker/Tasker.h"
+
+MAA_TASK_NS_BEGIN
+
+class Context;
+
+class ActionHelper : public NonCopyable
+{
+public:
+    explicit ActionHelper(Context* context);
+
+    bool wait_freezes(const MAA_RES_NS::WaitFreezesParam& param, const cv::Rect& ref_box, const std::string& name = "");
+
+    cv::Rect get_target_rect(const MAA_RES_NS::Action::Target& target, const cv::Rect& box = { });
+
+private:
+    cv::Rect get_rect_from_node(const std::string& node_name) const;
+    Tasker* tasker() const;
+    MAA_CTRL_NS::ControllerAgent* controller();
+
+private:
+    Context* context_ = nullptr;
+};
+
+MAA_TASK_NS_END

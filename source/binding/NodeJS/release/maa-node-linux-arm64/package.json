@@ -1,0 +1,19 @@
+{
+    "name": "@maaxyz/maa-node-linux-arm64",
+    "main": "./MaaNode.node",
+    "exports": {
+        ".": "./MaaNode.node",
+        "./server": "./MaaNodeServer.node"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/MaaXYZ/MaaFramework.git"
+    },
+    "scripts": {},
+    "os": [
+        "linux"
+    ],
+    "cpu": [
+        "arm64"
+    ]
+}

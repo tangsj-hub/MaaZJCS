@@ -1,0 +1,23 @@
+{
+    "name": "@maaxyz/maa-node",
+    "author": "nekosu",
+    "main": "./dist/index-client.js",
+    "types": "./dist/index-client.d.ts",
+    "exports": {
+        ".": {
+            "default": "./dist/index-client.js",
+            "types": "./dist/index-client.d.ts"
+        },
+        "./server": {
+            "default": "./dist/index-server.js",
+            "types": "./dist/index-server.d.ts"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/MaaXYZ/MaaFramework.git"
+    },
+    "engines": {
+        "node": ">= 20.0.0"
+    }
+}
