@@ -1,4 +1,10 @@
+import os
 import sys
+from pathlib import Path
+
+project_root = Path(__file__).resolve().parent.parent
+default_binary_path = project_root / "maafw"
+os.environ.setdefault("MAAFW_BINARY_PATH", str(default_binary_path))
 
 from maa.agent.agent_server import AgentServer
 from maa.context import Context
