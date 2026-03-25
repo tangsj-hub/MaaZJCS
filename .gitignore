@@ -454,3 +454,22 @@ tmp/*
 temp/*
 
 reference/*
+
+# Local runtime config
+config/mxu-*.json
+config/maa_option.json
+
+# Upstream framework test assets not maintained in this project repo
+test/TestingDataSet/
+
+# Upstream sample project, kept only for local reference
+sample/
+
+# Upstream framework internals/deps restored locally when needed.
+# Ignore them here to keep the game project repo focused on MaaZJCS files.
+source/MaaUtils/
+3rdparty/EmulatorExtras/
+3rdparty/MaaAgentBinary/
+3rdparty/quickjs/
+
+assets/resource/model/ocr/

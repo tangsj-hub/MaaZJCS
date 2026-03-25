@@ -8,12 +8,6 @@
   "title": "$project_title",
   "version": "0.1.0",
   "description": "$project_description",
-  "agent": {
-    "child_exec": "python",
-    "child_args": [
-      "agent/main.py"
-    ]
-  },
   "controller": [
     {
       "name": "Android",
