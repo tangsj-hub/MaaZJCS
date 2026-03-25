@@ -1,0 +1,133 @@
+{
+  "StartupEntry": {
+    "next": [
+      "LaunchGame",
+      "DetectHomeReady",
+      "DetectServerSelect",
+      "DetectLoginText",
+      "CloseStartupAnnouncement",
+      "ConfirmStartupDialog",
+      "WaitStartupLoading",
+      "RetryStartup"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "StartupFailed"
+    ]
+  },
+  "LaunchGame": {
+    "recognition": "DirectHit",
+    "action": "StartApp",
+    "package": "com.leiting.zjcs",
+    "max_hit": 1,
+    "post_delay": 2000,
+    "next": [
+      "StartupEntry"
+    ]
+  },
+  "DetectHomeReady": {
+    "recognition": "OCR",
+    "expected": [
+      "家园",
+      "冒险"
+    ],
+    "action": "DoNothing",
+    "post_delay": 800
+  },
+  "DetectServerSelect": {
+    "recognition": "OCR",
+    "expected": "服务器",
+    "action": "Click",
+    "target": [
+      345,
+      1052
+    ],
+    "post_delay": 2500,
+    "next": [
+      "StartupEntry"
+    ]
+  },
+  "DetectLoginText": {
+    "recognition": "OCR",
+    "expected": "登录",
+    "action": "Click",
+    "target": [
+      345,
+      1052
+    ],
+    "post_delay": 2500,
+    "next": [
+      "StartupEntry"
+    ]
+  },
+  "CloseStartupAnnouncement": {
+    "recognition": "OCR",
+    "expected": "公告",
+    "action": "Click",
+    "target": [
+      334,
+      1237
+    ],
+    "post_delay": 1000,
+    "next": [
+      "StartupEntry"
+    ]
+  },
+  "ConfirmStartupDialog": {
+    "recognition": "OCR",
+    "expected": [
+      "确定",
+      "确认"
+    ],
+    "action": "Click",
+    "post_delay": 1200,
+    "next": [
+      "StartupEntry"
+    ]
+  },
+  "WaitStartupLoading": {
+    "recognition": "OCR",
+    "expected": [
+      "加载中",
+      "正在",
+      "连接中"
+    ],
+    "action": "DoNothing",
+    "post_delay": 1500,
+    "next": [
+      "StartupEntry"
+    ]
+  },
+  "RetryStartup": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "max_hit": 45,
+    "post_delay": 1000,
+    "next": [
+      "StartupEntry"
+    ]
+  },
+  "StartupFailed": {
+    "recognition": "DirectHit",
+    "action": "StopTask"
+  },
+  "StartupPlaceholderNode": {
+    "recognition": "Custom",
+    "custom_recognition": "ZjcsPlaceholderReco",
+    "action": "Custom",
+    "custom_action": "ZjcsNoopAction",
+    "enabled": false
+  },
+  "StartupPackageBilibili": {
+    "recognition": "DirectHit",
+    "action": "StartApp",
+    "package": "com.leiting.zjcs.bilibili",
+    "enabled": false
+  },
+  "StartupPackageTapTap": {
+    "recognition": "DirectHit",
+    "action": "StartApp",
+    "package": "com.m88.zjcs.j",
+    "enabled": false
+  }
+}

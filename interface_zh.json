@@ -1,0 +1,15 @@
+{
+  "project_name": "杖剑传说",
+  "project_title": "杖剑传说 MAA 最小启动骨架",
+  "project_description": "基于 MaaFramework 的《杖剑传说》项目骨架，第一期仅提供项目入口、资源目录、占位任务链和 Agent 启动入口。",
+  "controller_android": "安卓端",
+  "controller_android_desc": "通过 ADB 连接安卓设备或模拟器，使用 720 短边缩放进行资源适配。",
+  "resource_official": "官服资源",
+  "resource_official_desc": "第一期主资源包，包含最小启动链、通用弹窗链和日常骨架占位节点。",
+  "task_startup_home": "启动并回首页",
+  "task_startup_home_desc": "最小启动任务骨架：启动游戏、识别登录页、识别首页，并在失败时转入通用弹窗恢复链。",
+  "task_popup_recovery": "关闭常见弹窗",
+  "task_popup_recovery_desc": "最小通用恢复链骨架：公告、确认框、加载态等通用界面占位处理。",
+  "task_daily_skeleton": "最小日常骨架",
+  "task_daily_skeleton_desc": "日常任务第一期占位入口，保留邮件、每日商店、每日签到的后续挂点。"
+}

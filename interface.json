@@ -1,0 +1,60 @@
+{
+  "interface_version": 2,
+  "languages": {
+    "zh_cn": "interface_zh.json"
+  },
+  "name": "MaaZJCS",
+  "label": "$project_name",
+  "title": "$project_title",
+  "version": "0.1.0",
+  "description": "$project_description",
+  "agent": {
+    "child_exec": "python",
+    "child_args": [
+      "agent/main.py"
+    ]
+  },
+  "controller": [
+    {
+      "name": "Android",
+      "label": "$controller_android",
+      "description": "$controller_android_desc",
+      "type": "Adb",
+      "display_short_side": 720
+    }
+  ],
+  "resource": [
+    {
+      "name": "Official",
+      "label": "$resource_official",
+      "description": "$resource_official_desc",
+      "path": [
+        "assets/resource"
+      ],
+      "controller": [
+        "Android"
+      ]
+    }
+  ],
+  "task": [
+    {
+      "name": "StartupAndHome",
+      "label": "$task_startup_home",
+      "entry": "StartupEntry",
+      "default_check": true,
+      "description": "$task_startup_home_desc"
+    },
+    {
+      "name": "CommonPopupRecovery",
+      "label": "$task_popup_recovery",
+      "entry": "CommonPopupEntry",
+      "description": "$task_popup_recovery_desc"
+    },
+    {
+      "name": "DailySkeleton",
+      "label": "$task_daily_skeleton",
+      "entry": "DailyEntry",
+      "description": "$task_daily_skeleton_desc"
+    }
+  ]
+}

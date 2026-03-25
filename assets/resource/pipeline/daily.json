@@ -1,0 +1,34 @@
+{
+  "DailyEntry": {
+    "next": [
+      "DailySkeletonReady"
+    ],
+    "timeout": 1000
+  },
+  "DailySkeletonReady": {
+    "recognition": "DirectHit",
+    "action": "Custom",
+    "custom_action": "ZjcsNoopAction"
+  },
+  "DailyMailPlaceholder": {
+    "recognition": "Custom",
+    "custom_recognition": "ZjcsPlaceholderReco",
+    "action": "Custom",
+    "custom_action": "ZjcsNoopAction",
+    "enabled": false
+  },
+  "DailyShopPlaceholder": {
+    "recognition": "Custom",
+    "custom_recognition": "ZjcsPlaceholderReco",
+    "action": "Custom",
+    "custom_action": "ZjcsNoopAction",
+    "enabled": false
+  },
+  "DailySigninPlaceholder": {
+    "recognition": "Custom",
+    "custom_recognition": "ZjcsPlaceholderReco",
+    "action": "Custom",
+    "custom_action": "ZjcsNoopAction",
+    "enabled": false
+  }
+}
