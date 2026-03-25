@@ -452,3 +452,5 @@ recording/*
 3rdparty/MaaDeps
 tmp/*
 temp/*
+
+reference/*
