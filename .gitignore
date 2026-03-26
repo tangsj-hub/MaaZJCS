@@ -1,6 +1,5 @@
 # 本地参考仓库（自行 clone，勿登记为 submodule；避免 git submodule 报错）
-reference/ASZJCS/
-reference/MaaZJCS_GUI/
+reference/*
 
 # docs
 docs/node_modules
@@ -459,3 +458,8 @@ temp/*
 assets/resource/model/ocr/
 
 maafw/
+
+# MXU 用户配置（本机 ADB 路径、设备序列号、窗口布局、热键等，勿入库）
+config/mxu-*.json
+# Maa 全局选项（日志级别、是否保存调试截图等，本机偏好；缺省时框架内有默认）
+config/maa_option.json

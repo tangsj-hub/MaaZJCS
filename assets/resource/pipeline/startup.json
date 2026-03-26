@@ -3,7 +3,7 @@
     "next": [
       "LaunchGame"
     ],
-    "timeout": 10000,
+    "timeout": 600000,
     "on_error": [
       "StartupFailed"
     ]
@@ -13,7 +13,295 @@
     "action": "StartApp",
     "package": "com.leiting.zjcs",
     "max_hit": 1,
-    "post_delay": 3000
+    "post_delay": 8000,
+    "next": [
+      "WaitAfterLaunch"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "WaitAfterLaunch"
+    ]
+  },
+  "WaitAfterLaunch": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 14000,
+    "next": [
+      "DetectAnnouncementByOcr",
+      "DetectAnnouncementByCheckboxTmpl",
+      "SkipNoAnnouncementAlreadyAtEnter"
+    ],
+    "timeout": 90000,
+    "on_error": [
+      "TapEnterAnywhere"
+    ]
+  },
+  "SkipNoAnnouncementAlreadyAtEnter": {
+    "recognition": "OCR",
+    "expected": [
+      "进入游戏",
+      "开始游戏",
+      "点击屏幕",
+      "点击继续",
+      "轻触屏幕",
+      "触摸屏幕",
+      "点击空白处",
+      "任意位置继续"
+    ],
+    "action": "DoNothing",
+    "post_delay": 3500,
+    "next": [
+      "TapEnterAnywhere"
+    ],
+    "timeout": 120000
+  },
+  "DetectAnnouncementByOcr": {
+    "recognition": "OCR",
+    "expected": [
+      "公告",
+      "今日不再提示",
+      "今日不再",
+      "活动",
+      "更新公告",
+      "活动公告"
+    ],
+    "action": "DoNothing",
+    "post_delay": 600,
+    "next": [
+      "EnsureNoReminder"
+    ],
+    "timeout": 120000
+  },
+  "DetectAnnouncementByCheckboxTmpl": {
+    "recognition": "TemplateMatch",
+    "template": "startup/no_reminder_today.jpg",
+    "threshold": 0.65,
+    "action": "DoNothing",
+    "post_delay": 400,
+    "next": [
+      "EnsureNoReminder"
+    ],
+    "timeout": 120000
+  },
+  "EnsureNoReminder": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 300,
+    "next": [
+      "NoRemindAlreadyCheckedTmpl",
+      "NoRemindClickToCheckOcr",
+      "NoRemindClickLabelCenterOcr"
+    ],
+    "timeout": 20000,
+    "on_error": [
+      "CloseAnnouncementBackLeft"
+    ]
+  },
+  "CloseAnnouncementBackLeft": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      32,
+      -120,
+      140,
+      120
+    ],
+    "post_delay": 400,
+    "next": [
+      "CloseAnnouncementOutside"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "CloseAnnouncementOutside"
+    ]
+  },
+  "NoRemindAlreadyCheckedTmpl": {
+    "recognition": "TemplateMatch",
+    "template": "startup/no_reminder_today.jpg",
+    "threshold": 0.72,
+    "action": "DoNothing",
+    "post_delay": 200,
+    "next": [
+      "CloseAnnouncementBackLeft"
+    ],
+    "timeout": 120000
+  },
+  "NoRemindClickToCheckOcr": {
+    "recognition": "OCR",
+    "expected": [
+      "今日不再提示",
+      "今日不再",
+      "不再提示",
+      "不再提醒",
+      "今日不弹",
+      "下次不再",
+      "下次不再提示",
+      "当天不再",
+      "本日不再"
+    ],
+    "action": "Click",
+    "target_offset": [
+      -72,
+      0,
+      0,
+      0
+    ],
+    "next": [
+      "CloseAnnouncementBackLeft"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "CloseAnnouncementBackLeft"
+    ]
+  },
+  "NoRemindClickLabelCenterOcr": {
+    "recognition": "OCR",
+    "expected": [
+      "今日不再提示",
+      "今日不再",
+      "不再提示",
+      "不再提醒",
+      "今日不弹",
+      "下次不再",
+      "下次不再提示"
+    ],
+    "action": "Click",
+    "next": [
+      "CloseAnnouncementBackLeft"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "CloseAnnouncementBackLeft"
+    ]
+  },
+  "CloseAnnouncementOutside": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      48,
+      220
+    ],
+    "post_delay": 450,
+    "next": [
+      "CloseAnnouncementOutsideEdge"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "CloseAnnouncementOutsideEdge"
+    ]
+  },
+  "CloseAnnouncementOutsideEdge": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      -48,
+      320
+    ],
+    "post_delay": 450,
+    "next": [
+      "CloseAnnouncementOutsideBottom"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "CloseAnnouncementOutsideBottom"
+    ]
+  },
+  "CloseAnnouncementOutsideBottom": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      640,
+      -56
+    ],
+    "post_delay": 450,
+    "next": [
+      "CloseAnnouncementOutsideTop"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "CloseAnnouncementOutsideTop"
+    ]
+  },
+  "CloseAnnouncementOutsideTop": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      640,
+      88
+    ],
+    "post_delay": 450,
+    "next": [
+      "CloseAnnouncementOcrFallback"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "CloseAnnouncementOcrFallback"
+    ]
+  },
+  "CloseAnnouncementOcrFallback": {
+    "recognition": "OCR",
+    "expected": [
+      "关闭",
+      "我知道了",
+      "知道了",
+      "确定",
+      "好的",
+      "跳过",
+      "确认",
+      "领取",
+      "前往",
+      "已阅",
+      "查看详情",
+      "暂不",
+      "取消"
+    ],
+    "action": "Click",
+    "post_delay": 500,
+    "next": [
+      "TapEnterAnywhere"
+    ],
+    "timeout": 12000,
+    "on_error": [
+      "TapEnterAnywhere"
+    ]
+  },
+  "TapEnterAnywhere": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      300,
+      580
+    ],
+    "post_delay": 800,
+    "next": [
+      "StartupComplete"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "RecoverLoadingThenRetryEnter"
+    ]
+  },
+  "RecoverLoadingThenRetryEnter": {
+    "recognition": "OCR",
+    "expected": [
+      "加载中",
+      "请稍候",
+      "资源加载",
+      "登录中"
+    ],
+    "action": "DoNothing",
+    "post_delay": 5000,
+    "timeout": 60000,
+    "next": [
+      "TapEnterAnywhere"
+    ],
+    "on_error": [
+      "TapEnterAnywhere"
+    ]
+  },
+  "StartupComplete": {
+    "recognition": "DirectHit",
+    "action": "StopTask"
   },
   "StartupFailed": {
     "recognition": "DirectHit",

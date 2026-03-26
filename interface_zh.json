@@ -7,7 +7,7 @@
     "resource_official": "官服",
     "resource_official_desc": "启动链",
     "task_startup_home": "启动游戏",
-    "task_startup_home_desc": "只包含启动游戏",
+    "task_startup_home_desc": "启动 → 无公告则跳过；有公告则勾选/外侧多点+顶底+OCR关按钮兜底→点屏。若仍卡住请导出 debug 日志并对照节点名，或截「关闭」按钮做 TemplateMatch。",
     "task_popup_recovery": "关闭常见弹窗",
     "task_popup_recovery_desc": "最小通用恢复链骨架：公告、确认框、加载态等通用界面占位处理。",
     "task_daily_skeleton": "最小日常骨架",
