@@ -1,9 +1,198 @@
 {
   "DailyEntry": {
     "next": [
+      "DailyCartBegin"
+    ],
+    "timeout": 2000
+  },
+  "DailyCartBegin": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 800,
+    "next": [
+      "DailyCartOpenByOcr"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "DailySkeletonReady"
+    ]
+  },
+  "DailyCartOpenByOcr": {
+    "recognition": "OCR",
+    "roi": [
+      0,
+      -520,
+      0,
+      0
+    ],
+    "expected": [
+      "小推车"
+    ],
+    "action": "Click",
+    "post_delay": 1200,
+    "next": [
+      "DailyCartClaimByOcr"
+    ],
+    "timeout": 12000,
+    "on_error": [
+      "DailyCartOpenByColor"
+    ]
+  },
+  "DailyCartOpenByColor": {
+    "recognition": "ColorMatch",
+    "roi": [
+      4,
+      -580,
+      280,
+      0
+    ],
+    "method": 4,
+    "lower": [
+      210,
+      175,
+      90
+    ],
+    "upper": [
+      255,
+      238,
+      150
+    ],
+    "count": 80,
+    "connected": true,
+    "order_by": "Area",
+    "index": -1,
+    "action": "Click",
+    "post_delay": 1200,
+    "next": [
+      "DailyCartClaimByOcr"
+    ],
+    "timeout": 8000,
+    "on_error": [
+      "DailyCartClaimByOcr"
+    ]
+  },
+  "DailyCartClaimByOcr": {
+    "recognition": "OCR",
+    "roi": [
+      72,
+      400,
+      576,
+      0
+    ],
+    "expected": [
+      "领取",
+      "免费领取",
+      "免费",
+      "可领取"
+    ],
+    "action": "Click",
+    "post_delay": 900,
+    "next": [
+      "DailyCartDismissPopover"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyCartTryUpgradeGate"
+    ]
+  },
+  "DailyCartDismissPopover": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      320,
+      108
+    ],
+    "post_delay": 450,
+    "next": [
+      "DailyCartTryUpgradeGate"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyCartTryUpgradeGate"
+    ]
+  },
+  "DailyCartTryUpgradeGate": {
+    "recognition": "OCR",
+    "roi": [
+      160,
+      -720,
+      0,
+      0
+    ],
+    "expected": [
+      "升级",
+      "可升级"
+    ],
+    "action": "Click",
+    "post_delay": 700,
+    "next": [
+      "DailyCartTapUpgradeBar"
+    ],
+    "timeout": 8000,
+    "on_error": [
+      "DailyCartHomeReturn"
+    ]
+  },
+  "DailyCartTapUpgradeBar": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      349,
+      -184
+    ],
+    "post_delay": 750,
+    "next": [
+      "DailyCartTapUpgradeBar2"
+    ],
+    "timeout": 10000
+  },
+  "DailyCartTapUpgradeBar2": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      349,
+      -184
+    ],
+    "post_delay": 750,
+    "next": [
+      "DailyCartBackFromUpgrade"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyCartBackFromUpgrade"
+    ]
+  },
+  "DailyCartBackFromUpgrade": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      60,
+      -72
+    ],
+    "post_delay": 550,
+    "next": [
+      "DailyCartHomeReturn"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyCartHomeReturn"
+    ]
+  },
+  "DailyCartHomeReturn": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      320,
+      -68
+    ],
+    "post_delay": 700,
+    "next": [
       "DailySkeletonReady"
     ],
-    "timeout": 1000
+    "timeout": 10000,
+    "on_error": [
+      "DailySkeletonReady"
+    ]
   },
   "DailySkeletonReady": {
     "recognition": "DirectHit",

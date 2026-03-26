@@ -1,5 +1,7 @@
 # 本地参考仓库（自行 clone，勿登记为 submodule；避免 git submodule 报错）
 reference/*
+# 独立 GUI 项目（自有 Git 仓库，勿纳入本仓库版本追踪）
+MaaZJCS_GUI/
 
 # docs
 docs/node_modules
