@@ -1,15 +1,15 @@
 {
-    "project_name": "杖剑传说",
-    "project_title": "杖剑传说",
-    "project_description": "基于 MaaFramework 的《杖剑传说》项目",
-    "controller_android": "安卓端",
-    "controller_android_desc": "通过 ADB 连接安卓设备或模拟器，使用 720 短边缩放进行资源适配。",
-    "resource_official": "官服",
-    "resource_official_desc": "启动链",
-    "task_startup_home": "启动游戏",
-    "task_startup_home_desc": "启动 → 无公告则跳过；有公告则勾选/外侧多点+顶底+OCR关按钮兜底→点屏。若仍卡住请导出 debug 日志并对照节点名，或截「关闭」按钮做 TemplateMatch。",
-    "task_popup_recovery": "关闭常见弹窗",
-    "task_popup_recovery_desc": "最小通用恢复链骨架：公告、确认框、加载态等通用界面占位处理。",
-  "task_daily_skeleton": "最小日常骨架",
-  "task_daily_skeleton_desc": "家园小推车：OCR「小推车」进入；取色兜底（参考 AS 助手金色调）；OCR「领取/免费」；点空白关闭浮层；右侧区域 OCR「升级」后连点底栏升级（坐标对齐 720 短边）；返回与回家园。随后仍为占位 noop，可接邮件/商店/签到等。若界面差异大请开 save_draw 调 ROI/颜色或改 TemplateMatch。"
+  "project_name": "杖剑传说",
+  "project_title": "杖剑传说",
+  "project_description": "基于 MaaFramework 的《杖剑传说》项目",
+  "controller_android": "安卓端",
+  "controller_android_desc": "通过 ADB 连接安卓设备或模拟器，使用 720 短边缩放进行资源适配。",
+  "resource_official": "官服",
+  "resource_official_desc": "启动链",
+  "task_startup_home": "启动游戏",
+  "task_startup_home_desc": "启动 → 无公告则跳过；有公告则勾选/外侧多点+顶底+OCR关按钮兜底→点屏。若仍卡住请导出 debug 日志并对照节点名，或截「关闭」按钮做 TemplateMatch。",
+  "task_daily_handcart": "小推车",
+  "task_daily_handcart_desc": "家园小推车：底栏家园槽与右滑 5 次后，在地图上只通过 OCR「小推车」、轮子特征/模板、取色打开（不在地图用升级角标图）。弹窗内领取；无领取则弹窗内用角标 xiaotuiche_shengji 或 OCR「升级」竞速进详情。详情页角标仍在则 OCR 点「升级」直至角标消失，左下矩形返回后关弹窗回底栏。",
+  "task_daily_handcart_from_cart": "小推车(已对位)",
+  "task_daily_handcart_from_cart_desc": "调试：事先对准地图小推车。从 OCR「小推车」/轮子/取色打开起，后续与完整任务相同；升级角标仅在弹窗与详情中识别，不在家园地图扫角标。"
 }

@@ -4,18 +4,14 @@
 
 已纳入最小启动骨架的能力：
 
-- 启动游戏
-- 识别登录页
-- 识别首页
-- 关闭常见弹窗
-- 日常骨架入口
+- 启动游戏（含公告/点屏进游戏）
+- 家园小推车（领取 + 升级）
 
 对应落点：
 
 - `interface.json`
-- `assets/resource/pipeline/common.json`
 - `assets/resource/pipeline/startup.json`
-- `assets/resource/pipeline/daily.json`
+- `assets/resource/pipeline/daily.json`（仅 `DailyHandcart*` 链）
 - `agent/main.py`
 
 ## 暂缓到后续阶段
@@ -45,6 +41,6 @@
 
 优先级建议如下：
 
-1. 将 `startUp.py` 的登录、回首页、公告关闭拆入 `startup.json` 和 `common.json`
-2. 将 `daily.py` 的邮件领取、每日商店、每日签到逐步替换 `daily.json` 中的占位节点
+1. 将 `startUp.py` 的登录、回首页、公告关闭继续细化到 `startup.json`（如需单独通用弹窗链可再建 pipeline 文件）
+2. 将 `daily.py` 的邮件领取、每日商店、每日签到等挂入 `daily.json` 新入口
 3. 将 `baseUtils.py` 中无法直接用内建 Pipeline 表达的复杂逻辑迁入 `agent/`

@@ -39,16 +39,16 @@
       "description": "$task_startup_home_desc"
     },
     {
-      "name": "CommonPopupRecovery",
-      "label": "$task_popup_recovery",
-      "entry": "CommonPopupEntry",
-      "description": "$task_popup_recovery_desc"
+      "name": "DailyHandcart",
+      "label": "$task_daily_handcart",
+      "entry": "DailyHandcartEntry",
+      "description": "$task_daily_handcart_desc"
     },
     {
-      "name": "DailySkeleton",
-      "label": "$task_daily_skeleton",
-      "entry": "DailyEntry",
-      "description": "$task_daily_skeleton_desc"
+      "name": "DailyHandcartFromCart",
+      "label": "$task_daily_handcart_from_cart",
+      "entry": "DailyHandcartAtCartEntry",
+      "description": "$task_daily_handcart_from_cart_desc"
     }
   ]
 }
