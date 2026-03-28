@@ -1,0 +1,1165 @@
+{
+  "MainQuestEntry": {
+    "next": [
+      "MainQuestBegin"
+    ],
+    "timeout": 2000
+  },
+  "MainQuestBegin": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 500,
+    "next": [
+      "MainQuestTapHomeBar"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "MainQuestStop"
+    ]
+  },
+  "MainQuestTapHomeBar": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      360,
+      -76
+    ],
+    "post_delay": 2000,
+    "next": [
+      "MainQuestCheckRewardRace"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "MainQuestCheckRewardRace"
+    ]
+  },
+  "MainQuestCheckRewardRace": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 500,
+    "next": [
+      "MainQuestClaimReward",
+      "MainQuestCheckExploreRace"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "MainQuestCheckExploreRace"
+    ]
+  },
+  "MainQuestClaimReward": {
+    "recognition": "ColorMatch",
+    "roi": [
+      11,
+      831,
+      306,
+      210
+    ],
+    "method": 4,
+    "lower": [
+      180,
+      40,
+      40
+    ],
+    "upper": [
+      255,
+      120,
+      120
+    ],
+    "count": 15,
+    "connected": true,
+    "action": "Click",
+    "target_offset": [
+      -30,
+      50,
+      0,
+      0
+    ],
+    "post_delay": 2000,
+    "next": [
+      "MainQuestCheckExploreRace"
+    ],
+    "timeout": 4000
+  },
+  "MainQuestCheckExploreRace": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 300,
+    "next": [
+      "MainQuestPowerInsufficient",
+      "MainQuestFindExploreBtn",
+      "MainQuestFindExploreBtn2"
+    ],
+    "timeout": 8000,
+    "on_error": [
+      "MainQuestStop"
+    ]
+  },
+  "MainQuestPowerInsufficient": {
+    "recognition": "ColorMatch",
+    "roi": [
+      21,
+      926,
+      294,
+      137
+    ],
+    "method": 4,
+    "lower": [
+      180,
+      90,
+      30
+    ],
+    "upper": [
+      240,
+      140,
+      60
+    ],
+    "count": 15,
+    "connected": true,
+    "action": "DoNothing",
+    "next": [
+      "MainQuestStop"
+    ],
+    "timeout": 3000
+  },
+  "MainQuestFindExploreBtn": {
+    "recognition": "ColorMatch",
+    "roi": [
+      6,
+      890,
+      305,
+      180
+    ],
+    "method": 4,
+    "lower": [
+      140,
+      150,
+      60
+    ],
+    "upper": [
+      200,
+      200,
+      110
+    ],
+    "count": 25,
+    "connected": true,
+    "action": "Click",
+    "target_offset": [
+      -10,
+      30,
+      0,
+      0
+    ],
+    "post_delay": 1500,
+    "next": [
+      "MainQuestConfirmEnter"
+    ],
+    "timeout": 5000
+  },
+  "MainQuestFindExploreBtn2": {
+    "recognition": "ColorMatch",
+    "roi": [
+      12,
+      893,
+      305,
+      150
+    ],
+    "method": 4,
+    "lower": [
+      160,
+      175,
+      70
+    ],
+    "upper": [
+      220,
+      230,
+      120
+    ],
+    "count": 20,
+    "connected": true,
+    "action": "Click",
+    "target_offset": [
+      -10,
+      30,
+      0,
+      0
+    ],
+    "post_delay": 1500,
+    "next": [
+      "MainQuestConfirmEnter"
+    ],
+    "timeout": 5000
+  },
+  "MainQuestConfirmEnter": {
+    "recognition": "OCR",
+    "roi": [
+      300,
+      650,
+      280,
+      150
+    ],
+    "expected": [
+      "确定"
+    ],
+    "action": "Click",
+    "post_delay": 3000,
+    "next": [
+      "MainQuestWaitMapLoad"
+    ],
+    "timeout": 8000,
+    "on_error": [
+      "MainQuestWaitMapLoad"
+    ]
+  },
+  "MainQuestWaitMapLoad": {
+    "recognition": "OCR",
+    "roi": [
+      400,
+      230,
+      320,
+      80
+    ],
+    "expected": [
+      "之国",
+      "岛",
+      "峡"
+    ],
+    "action": "DoNothing",
+    "post_delay": 1000,
+    "next": [
+      "ExploreEnablePositioning"
+    ],
+    "timeout": 15000,
+    "on_error": [
+      "MainQuestStop"
+    ]
+  },
+
+  "ExploreEnablePositioning": {
+    "recognition": "TemplateMatch",
+    "template": "mainquest/explore_position_off.png",
+    "roi": [
+      16,
+      894,
+      313,
+      165
+    ],
+    "threshold": 0.7,
+    "action": "Click",
+    "post_delay": 1000,
+    "next": [
+      "ExploreLoopGate"
+    ],
+    "timeout": 3000,
+    "on_error": [
+      "ExploreLoopGate"
+    ]
+  },
+
+  "ExploreLoopGate": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 500,
+    "next": [
+      "ExploreDialogueArrow",
+      "ExploreDialogueChoice",
+      "ExploreBattleStartOcr",
+      "ExploreRewardConfirm",
+      "ExplorePowerInsufCheck",
+      "ExploreOtherShopClose",
+      "ExploreOtherInteractButton",
+      "ExploreClaimQuestReward",
+      "ExploreEnablePositionLoop",
+      "ExploreEnablePositionLoop2",
+      "ExploreEnablePositionLoop3",
+      "ExploreBattleMonsterTmpl",
+      "ExploreTargetRedDot",
+      "ExploreTargetPowerGate",
+      "ExploreTargetGoddess",
+      "ExploreTargetLostGoddess1",
+      "ExploreTargetLostGoddess2",
+      "ExploreTargetLostGoddess3",
+      "ExploreTargetVoyageMonument",
+      "ExploreTargetPositionMarker1",
+      "ExploreTargetPositionMarker2"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "ExploreScrollMap"
+    ]
+  },
+
+  "ExploreDialogueArrow": {
+    "recognition": "ColorMatch",
+    "roi": [
+      320,
+      1210,
+      86,
+      65
+    ],
+    "method": 6,
+    "lower": [
+      15
+    ],
+    "upper": [
+      50
+    ],
+    "count": 25,
+    "connected": true,
+    "action": "Click",
+    "target": [
+      360,
+      -28
+    ],
+    "post_delay": 800,
+    "next": [
+      "ExploreDialogueArrow",
+      "ExploreDialogueChoice",
+      "ExploreLoopGate"
+    ],
+    "timeout": 2000,
+    "on_error": [
+      "ExploreLoopGate"
+    ]
+  },
+  "ExploreDialogueChoice": {
+    "recognition": "ColorMatch",
+    "roi": [
+      551,
+      547,
+      120,
+      639
+    ],
+    "method": 4,
+    "lower": [
+      170,
+      170,
+      80
+    ],
+    "upper": [
+      220,
+      220,
+      120
+    ],
+    "count": 25,
+    "connected": true,
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "ExploreDialogueArrow",
+      "ExploreLoopGate"
+    ],
+    "timeout": 3000,
+    "on_error": [
+      "ExploreLoopGate"
+    ]
+  },
+
+  "ExploreBattleStartOcr": {
+    "recognition": "OCR",
+    "roi": [
+      220,
+      880,
+      280,
+      100
+    ],
+    "expected": [
+      "开始战斗"
+    ],
+    "action": "Click",
+    "post_delay": 3000,
+    "next": [
+      "ExploreBattleLoop"
+    ],
+    "timeout": 5000
+  },
+  "ExploreBattleLoop": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 1000,
+    "next": [
+      "ExploreBattleVictory",
+      "ExploreBattleSkipBtn",
+      "ExploreBattleNextFloor",
+      "ExploreBattleSelectReward",
+      "ExploreBattleStillFighting"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "ExploreLoopGate"
+    ]
+  },
+  "ExploreBattleVictory": {
+    "recognition": "ColorMatch",
+    "roi": [
+      50,
+      200,
+      25,
+      70
+    ],
+    "method": 4,
+    "lower": [
+      170,
+      175,
+      80
+    ],
+    "upper": [
+      230,
+      230,
+      130
+    ],
+    "count": 15,
+    "connected": true,
+    "action": "Click",
+    "target": [
+      337,
+      -49
+    ],
+    "post_delay": 2000,
+    "next": [
+      "ExploreLoopGate"
+    ],
+    "timeout": 3000
+  },
+  "ExploreBattleSkipBtn": {
+    "recognition": "ColorMatch",
+    "roi": [
+      15,
+      900,
+      75,
+      50
+    ],
+    "method": 4,
+    "lower": [
+      160,
+      165,
+      75
+    ],
+    "upper": [
+      225,
+      225,
+      130
+    ],
+    "count": 15,
+    "connected": true,
+    "action": "Click",
+    "post_delay": 500,
+    "next": [
+      "ExploreBattleLoop"
+    ],
+    "timeout": 3000
+  },
+  "ExploreBattleNextFloor": {
+    "recognition": "OCR",
+    "roi": [
+      250,
+      790,
+      220,
+      90
+    ],
+    "expected": [
+      "层"
+    ],
+    "action": "Click",
+    "post_delay": 2000,
+    "next": [
+      "ExploreBattleLoop"
+    ],
+    "timeout": 3000
+  },
+  "ExploreBattleSelectReward": {
+    "recognition": "OCR",
+    "roi": [
+      280,
+      940,
+      150,
+      80
+    ],
+    "expected": [
+      "确定"
+    ],
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "ExploreBattleLoop"
+    ],
+    "timeout": 3000
+  },
+  "ExploreBattleStillFighting": {
+    "recognition": "TemplateMatch",
+    "template": "mainquest/battle_team_icon.png",
+    "roi": [
+      20,
+      900,
+      70,
+      60
+    ],
+    "threshold": 0.7,
+    "action": "DoNothing",
+    "post_delay": 2000,
+    "next": [
+      "ExploreBattleLoop"
+    ],
+    "timeout": 5000
+  },
+
+  "ExploreRewardConfirm": {
+    "recognition": "ColorMatch",
+    "roi": [
+      10,
+      330,
+      20,
+      80
+    ],
+    "method": 4,
+    "lower": [
+      170,
+      175,
+      85
+    ],
+    "upper": [
+      230,
+      235,
+      130
+    ],
+    "count": 12,
+    "connected": true,
+    "action": "Click",
+    "target": [
+      360,
+      372
+    ],
+    "post_delay": 1500,
+    "next": [
+      "ExploreLoopGate"
+    ],
+    "timeout": 3000
+  },
+
+  "ExplorePowerInsufCheck": {
+    "recognition": "ColorMatch",
+    "roi": [
+      21,
+      926,
+      294,
+      137
+    ],
+    "method": 4,
+    "lower": [
+      180,
+      90,
+      30
+    ],
+    "upper": [
+      240,
+      140,
+      60
+    ],
+    "count": 15,
+    "connected": true,
+    "action": "DoNothing",
+    "next": [
+      "ExploreReturnHome"
+    ],
+    "timeout": 3000
+  },
+
+  "ExploreOtherShopClose": {
+    "recognition": "OCR",
+    "roi": [
+      520,
+      790,
+      190,
+      110
+    ],
+    "expected": [
+      "商城"
+    ],
+    "action": "Click",
+    "target": [
+      331,
+      74
+    ],
+    "post_delay": 1500,
+    "next": [
+      "ExploreLoopGate"
+    ],
+    "timeout": 3000
+  },
+  "ExploreOtherInteractButton": {
+    "recognition": "OCR",
+    "roi": [
+      260,
+      840,
+      200,
+      220
+    ],
+    "expected": [
+      "激活",
+      "探索",
+      "访问",
+      "开启",
+      "解锁",
+      "挑战"
+    ],
+    "action": "Click",
+    "post_delay": 2000,
+    "next": [
+      "ExploreLoopGate"
+    ],
+    "timeout": 3000
+  },
+  "ExploreClaimQuestReward": {
+    "recognition": "ColorMatch",
+    "roi": [
+      11,
+      831,
+      306,
+      210
+    ],
+    "method": 4,
+    "lower": [
+      180,
+      40,
+      40
+    ],
+    "upper": [
+      255,
+      120,
+      120
+    ],
+    "count": 15,
+    "connected": true,
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "ExploreLoopGate"
+    ],
+    "timeout": 3000
+  },
+  "ExploreEnablePositionLoop": {
+    "recognition": "TemplateMatch",
+    "template": "mainquest/explore_position_off.png",
+    "roi": [
+      16,
+      894,
+      313,
+      165
+    ],
+    "threshold": 0.7,
+    "action": "Click",
+    "post_delay": 1000,
+    "next": [
+      "ExploreLoopGate"
+    ],
+    "timeout": 3000
+  },
+  "ExploreEnablePositionLoop2": {
+    "recognition": "TemplateMatch",
+    "template": "mainquest/explore_position_off2.png",
+    "roi": [
+      16,
+      894,
+      313,
+      165
+    ],
+    "threshold": 0.7,
+    "action": "Click",
+    "post_delay": 1000,
+    "next": [
+      "ExploreLoopGate"
+    ],
+    "timeout": 3000
+  },
+  "ExploreEnablePositionLoop3": {
+    "recognition": "TemplateMatch",
+    "template": "mainquest/explore_position_off3.png",
+    "roi": [
+      16,
+      894,
+      313,
+      165
+    ],
+    "threshold": 0.7,
+    "action": "Click",
+    "post_delay": 1000,
+    "next": [
+      "ExploreLoopGate"
+    ],
+    "timeout": 3000
+  },
+  "ExploreBattleMonsterTmpl": {
+    "recognition": "TemplateMatch",
+    "template": "mainquest/explore_monster.png",
+    "roi": [
+      14,
+      123,
+      683,
+      932
+    ],
+    "threshold": 0.7,
+    "action": "Click",
+    "post_delay": 2500,
+    "next": [
+      "ExploreBattleStartOcr",
+      "ExploreLoopGate"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "ExploreLoopGate"
+    ]
+  },
+
+  "ExploreTargetRedDot": {
+    "recognition": "ColorMatch",
+    "roi": [
+      4,
+      115,
+      605,
+      858
+    ],
+    "method": 4,
+    "lower": [
+      180,
+      50,
+      50
+    ],
+    "upper": [
+      255,
+      130,
+      130
+    ],
+    "count": 20,
+    "connected": true,
+    "action": "Click",
+    "target_offset": [
+      -10,
+      10,
+      0,
+      0
+    ],
+    "post_delay": 2500,
+    "next": [
+      "ExploreAfterNavigate"
+    ],
+    "timeout": 3000
+  },
+  "ExploreTargetPowerGate": {
+    "recognition": "TemplateMatch",
+    "template": "mainquest/nav_power_gate.png",
+    "roi": [
+      4,
+      115,
+      701,
+      858
+    ],
+    "threshold": 0.7,
+    "action": "Click",
+    "post_delay": 2500,
+    "next": [
+      "ExploreAfterNavigate"
+    ],
+    "timeout": 3000
+  },
+  "ExploreTargetGoddess": {
+    "recognition": "TemplateMatch",
+    "template": "mainquest/nav_goddess.png",
+    "roi": [
+      4,
+      115,
+      701,
+      858
+    ],
+    "threshold": 0.7,
+    "action": "Click",
+    "post_delay": 2500,
+    "next": [
+      "ExploreAfterNavigate"
+    ],
+    "timeout": 3000
+  },
+  "ExploreTargetLostGoddess1": {
+    "recognition": "TemplateMatch",
+    "template": "mainquest/nav_lost_goddess.png",
+    "roi": [
+      4,
+      115,
+      701,
+      858
+    ],
+    "threshold": 0.7,
+    "action": "Click",
+    "post_delay": 2500,
+    "next": [
+      "ExploreAfterNavigate"
+    ],
+    "timeout": 3000
+  },
+  "ExploreTargetLostGoddess2": {
+    "recognition": "TemplateMatch",
+    "template": "mainquest/nav_lost_goddess2.png",
+    "roi": [
+      4,
+      115,
+      701,
+      858
+    ],
+    "threshold": 0.7,
+    "action": "Click",
+    "post_delay": 2500,
+    "next": [
+      "ExploreAfterNavigate"
+    ],
+    "timeout": 3000
+  },
+  "ExploreTargetLostGoddess3": {
+    "recognition": "TemplateMatch",
+    "template": "mainquest/nav_lost_goddess3.png",
+    "roi": [
+      4,
+      115,
+      701,
+      858
+    ],
+    "threshold": 0.7,
+    "action": "Click",
+    "post_delay": 2500,
+    "next": [
+      "ExploreAfterNavigate"
+    ],
+    "timeout": 3000
+  },
+  "ExploreTargetVoyageMonument": {
+    "recognition": "TemplateMatch",
+    "template": "mainquest/nav_voyage_monument.png",
+    "roi": [
+      4,
+      115,
+      701,
+      858
+    ],
+    "threshold": 0.7,
+    "action": "Click",
+    "post_delay": 2500,
+    "next": [
+      "ExploreAfterNavigate"
+    ],
+    "timeout": 3000
+  },
+  "ExploreTargetPositionMarker1": {
+    "recognition": "TemplateMatch",
+    "template": "mainquest/nav_position_marker.png",
+    "roi": [
+      4,
+      115,
+      701,
+      858
+    ],
+    "threshold": 0.7,
+    "action": "Click",
+    "post_delay": 2500,
+    "next": [
+      "ExploreAfterNavigate"
+    ],
+    "timeout": 3000
+  },
+  "ExploreTargetPositionMarker2": {
+    "recognition": "TemplateMatch",
+    "template": "mainquest/nav_position_marker2.png",
+    "roi": [
+      4,
+      115,
+      701,
+      858
+    ],
+    "threshold": 0.7,
+    "action": "Click",
+    "post_delay": 2500,
+    "next": [
+      "ExploreAfterNavigate"
+    ],
+    "timeout": 3000
+  },
+
+  "ExploreAfterNavigate": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 2000,
+    "next": [
+      "ExploreHPCheckGate"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "ExploreLoopGate"
+    ]
+  },
+  "ExploreHPCheckGate": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 300,
+    "next": [
+      "ExploreHPLow"
+    ],
+    "timeout": 2000,
+    "on_error": [
+      "ExploreLoopGate"
+    ]
+  },
+  "ExploreHPLow": {
+    "recognition": "ColorMatch",
+    "roi": [
+      195,
+      45,
+      60,
+      25
+    ],
+    "method": 4,
+    "lower": [
+      30,
+      30,
+      30
+    ],
+    "upper": [
+      75,
+      75,
+      75
+    ],
+    "count": 15,
+    "action": "DoNothing",
+    "next": [
+      "ExploreOpenCharPanel"
+    ],
+    "timeout": 2000
+  },
+  "ExploreOpenCharPanel": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      93,
+      55
+    ],
+    "post_delay": 2500,
+    "next": [
+      "ExploreHealRace"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "ExploreLoopGate"
+    ]
+  },
+  "ExploreHealRace": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 500,
+    "next": [
+      "ExploreCookingInsufficient"
+    ],
+    "timeout": 2000,
+    "on_error": [
+      "ExploreOneKeyHeal"
+    ]
+  },
+  "ExploreCookingInsufficient": {
+    "recognition": "ColorMatch",
+    "roi": [
+      415,
+      1046,
+      192,
+      39
+    ],
+    "method": 4,
+    "lower": [
+      180,
+      50,
+      50
+    ],
+    "upper": [
+      255,
+      120,
+      120
+    ],
+    "count": 8,
+    "action": "DoNothing",
+    "next": [
+      "ExploreBuyCookingTapCooking"
+    ],
+    "timeout": 2000
+  },
+  "ExploreBuyCookingTapCooking": {
+    "recognition": "OCR",
+    "roi": [
+      130,
+      1020,
+      160,
+      80
+    ],
+    "expected": [
+      "料理"
+    ],
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "ExploreBuyCookingAutoSelect"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "ExploreCloseCharPanel"
+    ]
+  },
+  "ExploreBuyCookingAutoSelect": {
+    "recognition": "OCR",
+    "roi": [
+      100,
+      980,
+      220,
+      100
+    ],
+    "expected": [
+      "自动选择",
+      "自动"
+    ],
+    "action": "Click",
+    "post_delay": 1000,
+    "next": [
+      "ExploreBuyCookingConfirm"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "ExploreCloseCharPanel"
+    ]
+  },
+  "ExploreBuyCookingConfirm": {
+    "recognition": "OCR",
+    "roi": [
+      340,
+      720,
+      150,
+      100
+    ],
+    "expected": [
+      "购买"
+    ],
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "ExploreCloseCharPanel"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "ExploreCloseCharPanel"
+    ]
+  },
+  "ExploreOneKeyHeal": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      481,
+      1065
+    ],
+    "post_delay": 1500,
+    "next": [
+      "ExploreCloseCharPanel"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "ExploreCloseCharPanel"
+    ]
+  },
+  "ExploreCloseCharPanel": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      333,
+      -64
+    ],
+    "post_delay": 1200,
+    "next": [
+      "ExploreCloseCharPanelRetry"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "ExploreLoopGate"
+    ]
+  },
+  "ExploreCloseCharPanelRetry": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      333,
+      -64
+    ],
+    "post_delay": 1000,
+    "next": [
+      "ExploreLoopGate"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "ExploreLoopGate"
+    ]
+  },
+
+  "ExploreScrollMap": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      511,
+      551
+    ],
+    "end": [
+      531,
+      819
+    ],
+    "duration": 500,
+    "post_delay": 2000,
+    "next": [
+      "ExploreVerifyOnMap"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "ExploreReturnHome"
+    ]
+  },
+  "ExploreVerifyOnMap": {
+    "recognition": "OCR",
+    "roi": [
+      400,
+      230,
+      320,
+      80
+    ],
+    "expected": [
+      "之国",
+      "岛",
+      "峡"
+    ],
+    "action": "DoNothing",
+    "post_delay": 500,
+    "next": [
+      "ExploreLoopGate"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "ExploreReturnHome"
+    ]
+  },
+
+  "ExploreReturnHome": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      60,
+      -64
+    ],
+    "post_delay": 1500,
+    "next": [
+      "MainQuestStop"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "MainQuestStop"
+    ]
+  },
+  "MainQuestStop": {
+    "recognition": "DirectHit",
+    "action": "StopTask"
+  }
+}

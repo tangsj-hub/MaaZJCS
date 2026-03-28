@@ -1,0 +1,590 @@
+{
+  "DailyShopEntry": {
+    "next": [
+      "DailyShopBegin"
+    ],
+    "timeout": 2000
+  },
+  "DailyShopBegin": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 800,
+    "next": [
+      "DailyShopTapHomeBar"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "DailyShopStop"
+    ]
+  },
+  "DailyShopTapHomeBar": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      360,
+      -76
+    ],
+    "post_delay": 2000,
+    "next": [
+      "DailyShopFindShop"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyShopFindShop"
+    ]
+  },
+
+  "DailyShopFindShop": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 500,
+    "next": [
+      "DailyShopFindByOcr"
+    ],
+    "timeout": 8000,
+    "on_error": [
+      "DailyShopSwipeSeek1"
+    ]
+  },
+  "DailyShopFindByOcr": {
+    "recognition": "OCR",
+    "roi": [
+      16,
+      200,
+      688,
+      720
+    ],
+    "expected": [
+      "商店",
+      "每日商店"
+    ],
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "DailyShopOpenedWait"
+    ],
+    "timeout": 8000
+  },
+
+  "DailyShopSwipeSeek1": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      200,
+      -420
+    ],
+    "end": [
+      500,
+      -420
+    ],
+    "duration": 400,
+    "post_delay": 600,
+    "next": [
+      "DailyShopSwipeSeek2"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyShopSwipeSeek2"
+    ]
+  },
+  "DailyShopSwipeSeek2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      200,
+      -420
+    ],
+    "end": [
+      500,
+      -420
+    ],
+    "duration": 400,
+    "post_delay": 600,
+    "next": [
+      "DailyShopSwipeSeek3"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyShopSwipeSeek3"
+    ]
+  },
+  "DailyShopSwipeSeek3": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      200,
+      -420
+    ],
+    "end": [
+      500,
+      -420
+    ],
+    "duration": 400,
+    "post_delay": 600,
+    "next": [
+      "DailyShopFindShop2"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyShopFindShop2"
+    ]
+  },
+
+  "DailyShopFindShop2": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 500,
+    "next": [
+      "DailyShopFindByOcr2"
+    ],
+    "timeout": 8000,
+    "on_error": [
+      "DailyShopSwipeBack1"
+    ]
+  },
+  "DailyShopFindByOcr2": {
+    "recognition": "OCR",
+    "roi": [
+      16,
+      200,
+      688,
+      720
+    ],
+    "expected": [
+      "商店",
+      "每日商店"
+    ],
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "DailyShopOpenedWait"
+    ],
+    "timeout": 8000
+  },
+
+  "DailyShopSwipeBack1": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      500,
+      -420
+    ],
+    "end": [
+      200,
+      -420
+    ],
+    "duration": 400,
+    "post_delay": 600,
+    "next": [
+      "DailyShopSwipeBack2"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyShopSwipeBack2"
+    ]
+  },
+  "DailyShopSwipeBack2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      500,
+      -420
+    ],
+    "end": [
+      200,
+      -420
+    ],
+    "duration": 400,
+    "post_delay": 600,
+    "next": [
+      "DailyShopSwipeBack3"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyShopSwipeBack3"
+    ]
+  },
+  "DailyShopSwipeBack3": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      500,
+      -420
+    ],
+    "end": [
+      200,
+      -420
+    ],
+    "duration": 400,
+    "post_delay": 600,
+    "next": [
+      "DailyShopSwipeBack4"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyShopSwipeBack4"
+    ]
+  },
+  "DailyShopSwipeBack4": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      500,
+      -420
+    ],
+    "end": [
+      200,
+      -420
+    ],
+    "duration": 400,
+    "post_delay": 600,
+    "next": [
+      "DailyShopSwipeBack5"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyShopSwipeBack5"
+    ]
+  },
+  "DailyShopSwipeBack5": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      500,
+      -420
+    ],
+    "end": [
+      200,
+      -420
+    ],
+    "duration": 400,
+    "post_delay": 600,
+    "next": [
+      "DailyShopSwipeBack6"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyShopSwipeBack6"
+    ]
+  },
+  "DailyShopSwipeBack6": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      500,
+      -420
+    ],
+    "end": [
+      200,
+      -420
+    ],
+    "duration": 400,
+    "post_delay": 600,
+    "next": [
+      "DailyShopFindShop3"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyShopFindShop3"
+    ]
+  },
+
+  "DailyShopFindShop3": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 500,
+    "next": [
+      "DailyShopFindByOcr3"
+    ],
+    "timeout": 8000,
+    "on_error": [
+      "DailyShopStop"
+    ]
+  },
+  "DailyShopFindByOcr3": {
+    "recognition": "OCR",
+    "roi": [
+      16,
+      200,
+      688,
+      720
+    ],
+    "expected": [
+      "商店",
+      "每日商店"
+    ],
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "DailyShopOpenedWait"
+    ],
+    "timeout": 8000
+  },
+
+  "DailyShopOpenedWait": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 1500,
+    "next": [
+      "DailyShopBuyDiscount1"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyShopBuyDiscount1"
+    ]
+  },
+  "DailyShopBuyDiscount1": {
+    "recognition": "ColorMatch",
+    "roi": [
+      11,
+      164,
+      680,
+      571
+    ],
+    "method": 4,
+    "lower": [
+      85,
+      185,
+      235
+    ],
+    "upper": [
+      135,
+      230,
+      255
+    ],
+    "count": 20,
+    "connected": true,
+    "order_by": "Area",
+    "index": -1,
+    "action": "Click",
+    "target_offset": [
+      100,
+      220,
+      0,
+      0
+    ],
+    "post_delay": 1500,
+    "next": [
+      "DailyShopBuyDiscount2"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyShopCheckTreasury"
+    ]
+  },
+  "DailyShopBuyDiscount2": {
+    "recognition": "ColorMatch",
+    "roi": [
+      11,
+      164,
+      680,
+      571
+    ],
+    "method": 4,
+    "lower": [
+      85,
+      185,
+      235
+    ],
+    "upper": [
+      135,
+      230,
+      255
+    ],
+    "count": 20,
+    "connected": true,
+    "order_by": "Area",
+    "index": -1,
+    "action": "Click",
+    "target_offset": [
+      100,
+      220,
+      0,
+      0
+    ],
+    "post_delay": 1500,
+    "next": [
+      "DailyShopBuyDiscount3"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyShopCheckTreasury"
+    ]
+  },
+  "DailyShopBuyDiscount3": {
+    "recognition": "ColorMatch",
+    "roi": [
+      11,
+      164,
+      680,
+      571
+    ],
+    "method": 4,
+    "lower": [
+      85,
+      185,
+      235
+    ],
+    "upper": [
+      135,
+      230,
+      255
+    ],
+    "count": 20,
+    "connected": true,
+    "order_by": "Area",
+    "index": -1,
+    "action": "Click",
+    "target_offset": [
+      100,
+      220,
+      0,
+      0
+    ],
+    "post_delay": 1500,
+    "next": [
+      "DailyShopBuyDiscount4"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyShopCheckTreasury"
+    ]
+  },
+  "DailyShopBuyDiscount4": {
+    "recognition": "ColorMatch",
+    "roi": [
+      11,
+      164,
+      680,
+      571
+    ],
+    "method": 4,
+    "lower": [
+      85,
+      185,
+      235
+    ],
+    "upper": [
+      135,
+      230,
+      255
+    ],
+    "count": 20,
+    "connected": true,
+    "order_by": "Area",
+    "index": -1,
+    "action": "Click",
+    "target_offset": [
+      100,
+      220,
+      0,
+      0
+    ],
+    "post_delay": 1500,
+    "next": [
+      "DailyShopBuyDiscount5"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyShopCheckTreasury"
+    ]
+  },
+  "DailyShopBuyDiscount5": {
+    "recognition": "ColorMatch",
+    "roi": [
+      11,
+      164,
+      680,
+      571
+    ],
+    "method": 4,
+    "lower": [
+      85,
+      185,
+      235
+    ],
+    "upper": [
+      135,
+      230,
+      255
+    ],
+    "count": 20,
+    "connected": true,
+    "order_by": "Area",
+    "index": -1,
+    "action": "Click",
+    "target_offset": [
+      100,
+      220,
+      0,
+      0
+    ],
+    "post_delay": 1500,
+    "next": [
+      "DailyShopCheckTreasury"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyShopCheckTreasury"
+    ]
+  },
+
+  "DailyShopCheckTreasury": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      427,
+      -59
+    ],
+    "post_delay": 1200,
+    "next": [
+      "DailyShopClaimFree"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyShopClaimFree"
+    ]
+  },
+  "DailyShopClaimFree": {
+    "recognition": "OCR",
+    "roi": [
+      50,
+      300,
+      250,
+      200
+    ],
+    "expected": [
+      "免费"
+    ],
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "DailyShopReturn"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyShopReturn"
+    ]
+  },
+
+  "DailyShopReturn": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      348,
+      -56
+    ],
+    "post_delay": 700,
+    "next": [
+      "DailyShopStop"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyShopStop"
+    ]
+  },
+  "DailyShopStop": {
+    "recognition": "DirectHit",
+    "action": "StopTask"
+  }
+}

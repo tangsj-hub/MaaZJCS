@@ -1,0 +1,242 @@
+{
+  "DailyBedEntry": {
+    "next": [
+      "DailyBedBegin"
+    ],
+    "timeout": 2000
+  },
+  "DailyBedBegin": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 800,
+    "next": [
+      "DailyBedTapHomeBar"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "DailyBedStop"
+    ]
+  },
+  "DailyBedTapHomeBar": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      360,
+      -76
+    ],
+    "post_delay": 2000,
+    "next": [
+      "DailyBedFindRace"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyBedFindRace"
+    ]
+  },
+  "DailyBedFindRace": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 500,
+    "next": [
+      "DailyBedFindByOcr",
+      "DailyBedFindByColor"
+    ],
+    "timeout": 20000,
+    "on_error": [
+      "DailyBedStop"
+    ]
+  },
+
+  "DailyBedFindByOcr": {
+    "recognition": "OCR",
+    "roi": [
+      16,
+      200,
+      688,
+      720
+    ],
+    "expected": [
+      "小木床"
+    ],
+    "action": "Click",
+    "post_delay": 2000,
+    "next": [
+      "DailyBedClickAgainCheck"
+    ],
+    "timeout": 12000
+  },
+  "DailyBedFindByColor": {
+    "recognition": "ColorMatch",
+    "roi": [
+      4,
+      340,
+      700,
+      540
+    ],
+    "method": 4,
+    "lower": [
+      165,
+      110,
+      35
+    ],
+    "upper": [
+      225,
+      165,
+      105
+    ],
+    "count": 40,
+    "connected": true,
+    "order_by": "Area",
+    "index": -1,
+    "action": "Click",
+    "post_delay": 2000,
+    "next": [
+      "DailyBedClickAgainCheck"
+    ],
+    "timeout": 12000
+  },
+
+  "DailyBedClickAgainCheck": {
+    "recognition": "ColorMatch",
+    "roi": [
+      4,
+      340,
+      700,
+      540
+    ],
+    "method": 4,
+    "lower": [
+      165,
+      110,
+      35
+    ],
+    "upper": [
+      225,
+      165,
+      105
+    ],
+    "count": 40,
+    "connected": true,
+    "order_by": "Area",
+    "index": -1,
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "DailyBedTapBed"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyBedTapBed"
+    ]
+  },
+
+  "DailyBedTapBed": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      440,
+      615
+    ],
+    "post_delay": 2500,
+    "next": [
+      "DailyBedOcrFree"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyBedOcrFree"
+    ]
+  },
+  "DailyBedOcrFree": {
+    "recognition": "OCR",
+    "roi": [
+      100,
+      600,
+      520,
+      500
+    ],
+    "expected": [
+      "免费",
+      "免费加速"
+    ],
+    "action": "Click",
+    "post_delay": 3000,
+    "next": [
+      "DailyBedClaimConfirm"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyBedDismissAndReturn"
+    ]
+  },
+  "DailyBedClaimConfirm": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      355,
+      -70
+    ],
+    "post_delay": 800,
+    "next": [
+      "DailyBedClaimConfirm2"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyBedDismissAndReturn"
+    ]
+  },
+  "DailyBedClaimConfirm2": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      355,
+      -70
+    ],
+    "post_delay": 800,
+    "next": [
+      "DailyBedDismissAndReturn"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyBedDismissAndReturn"
+    ]
+  },
+
+  "DailyBedDismissAndReturn": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      100,
+      200,
+      200,
+      720
+    ],
+    "post_delay": 500,
+    "next": [
+      "DailyBedHomeReturn"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyBedHomeReturn"
+    ]
+  },
+  "DailyBedHomeReturn": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      320,
+      -68
+    ],
+    "post_delay": 700,
+    "next": [
+      "DailyBedStop"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyBedStop"
+    ]
+  },
+  "DailyBedStop": {
+    "recognition": "DirectHit",
+    "action": "StopTask"
+  }
+}

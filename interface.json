@@ -49,6 +49,54 @@
       "label": "$task_daily_handcart_from_cart",
       "entry": "DailyHandcartAtCartEntry",
       "description": "$task_daily_handcart_from_cart_desc"
+    },
+    {
+      "name": "DailyBed",
+      "label": "$task_daily_bed",
+      "entry": "DailyBedEntry",
+      "description": "$task_daily_bed_desc"
+    },
+    {
+      "name": "DailyShop",
+      "label": "$task_daily_shop",
+      "entry": "DailyShopEntry",
+      "description": "$task_daily_shop_desc"
+    },
+    {
+      "name": "DailyTasks",
+      "label": "$task_daily_tasks",
+      "entry": "DailyTasksEntry",
+      "description": "$task_daily_tasks_desc"
+    },
+    {
+      "name": "DailySignIn",
+      "label": "$task_daily_sign_in",
+      "entry": "DailySignInEntry",
+      "description": "$task_daily_sign_in_desc"
+    },
+    {
+      "name": "GrowthTrial",
+      "label": "$task_growth_trial",
+      "entry": "GrowthTrialEntry",
+      "description": "$task_growth_trial_desc"
+    },
+    {
+      "name": "DepartureSignIn",
+      "label": "$task_departure_sign_in",
+      "entry": "DepartureSignInEntry",
+      "description": "$task_departure_sign_in_desc"
+    },
+    {
+      "name": "MainQuest",
+      "label": "$task_main_quest",
+      "entry": "MainQuestEntry",
+      "description": "$task_main_quest_desc"
+    },
+    {
+      "name": "ExitGame",
+      "label": "$task_exit_game",
+      "entry": "ExitGameEntry",
+      "description": "$task_exit_game_desc"
     }
   ]
 }

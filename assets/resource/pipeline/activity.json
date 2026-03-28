@@ -1,0 +1,442 @@
+{
+  "DailySignInEntry": {
+    "next": [
+      "DailySignInGoJingcai"
+    ],
+    "on_error": [
+      "DailySignInStop"
+    ]
+  },
+  "DailySignInGoJingcai": {
+    "recognition": "OCR",
+    "expected": [
+      "精彩"
+    ],
+    "roi": [
+      500,
+      140,
+      220,
+      80
+    ],
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "DailySignInFindEntry"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailySignInStop"
+    ]
+  },
+  "DailySignInFindEntry": {
+    "recognition": "OCR",
+    "expected": [
+      "每日签到"
+    ],
+    "roi": [
+      15,
+      91,
+      684,
+      1081
+    ],
+    "action": "Click",
+    "post_delay": 2000,
+    "next": [
+      "DailySignInClaimPage"
+    ],
+    "timeout": 8000,
+    "on_error": [
+      "DailySignInSwipe"
+    ]
+  },
+  "DailySignInSwipe": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      360,
+      920
+    ],
+    "end": [
+      360,
+      530
+    ],
+    "duration": 500,
+    "post_delay": 1000,
+    "next": [
+      "DailySignInFindEntryRetry"
+    ],
+    "on_error": [
+      "DailySignInStop"
+    ]
+  },
+  "DailySignInFindEntryRetry": {
+    "recognition": "OCR",
+    "expected": [
+      "每日签到"
+    ],
+    "roi": [
+      15,
+      91,
+      684,
+      1081
+    ],
+    "action": "Click",
+    "post_delay": 2000,
+    "next": [
+      "DailySignInClaimPage"
+    ],
+    "timeout": 8000,
+    "on_error": [
+      "DailySignInBack"
+    ]
+  },
+  "DailySignInClaimPage": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "DailySignInClaimByOcr",
+      "DailySignInClaimByColor"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailySignInBack"
+    ]
+  },
+  "DailySignInClaimByOcr": {
+    "recognition": "OCR",
+    "expected": [
+      "签到",
+      "领取"
+    ],
+    "roi": [
+      30,
+      350,
+      660,
+      700
+    ],
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "DailySignInDismiss"
+    ],
+    "timeout": 8000
+  },
+  "DailySignInClaimByColor": {
+    "recognition": "ColorMatch",
+    "lower": [
+      25,
+      120,
+      130
+    ],
+    "upper": [
+      50,
+      255,
+      255
+    ],
+    "roi": [
+      30,
+      220,
+      660,
+      950
+    ],
+    "count": 300,
+    "method": 1,
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "DailySignInDismiss"
+    ],
+    "timeout": 8000
+  },
+  "DailySignInDismiss": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      360,
+      1230
+    ],
+    "post_delay": 800,
+    "next": [
+      "DailySignInBack"
+    ]
+  },
+  "DailySignInBack": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      77,
+      1212
+    ],
+    "post_delay": 500,
+    "next": [
+      "DailySignInStop"
+    ]
+  },
+  "DailySignInStop": {
+    "recognition": "DirectHit",
+    "action": "StopTask"
+  },
+
+  "GrowthTrialEntry": {
+    "next": [
+      "GrowthTrialGoJingcai"
+    ],
+    "on_error": [
+      "GrowthTrialStop"
+    ]
+  },
+  "GrowthTrialGoJingcai": {
+    "recognition": "OCR",
+    "expected": [
+      "精彩"
+    ],
+    "roi": [
+      500,
+      140,
+      220,
+      80
+    ],
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "GrowthTrialFindEntry"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "GrowthTrialStop"
+    ]
+  },
+  "GrowthTrialFindEntry": {
+    "recognition": "OCR",
+    "expected": [
+      "成长试炼"
+    ],
+    "roi": [
+      15,
+      91,
+      684,
+      1081
+    ],
+    "action": "Click",
+    "post_delay": 2000,
+    "next": [
+      "GrowthTrialClaimPage"
+    ],
+    "timeout": 8000,
+    "on_error": [
+      "GrowthTrialStop"
+    ]
+  },
+  "GrowthTrialClaimPage": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "GrowthTrialClaim"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "GrowthTrialBack"
+    ]
+  },
+  "GrowthTrialClaim": {
+    "recognition": "OCR",
+    "expected": [
+      "领取"
+    ],
+    "roi": [
+      400,
+      350,
+      300,
+      500
+    ],
+    "action": "Click",
+    "max_hit": 5,
+    "post_delay": 1500,
+    "next": [
+      "GrowthTrialDismissPopup"
+    ],
+    "timeout": 8000
+  },
+  "GrowthTrialDismissPopup": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      360,
+      1230
+    ],
+    "post_delay": 1000,
+    "next": [
+      "GrowthTrialClaim"
+    ],
+    "on_error": [
+      "GrowthTrialBack"
+    ]
+  },
+  "GrowthTrialBack": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      77,
+      1212
+    ],
+    "post_delay": 500,
+    "next": [
+      "GrowthTrialStop"
+    ]
+  },
+  "GrowthTrialStop": {
+    "recognition": "DirectHit",
+    "action": "StopTask"
+  },
+
+  "DepartureSignInEntry": {
+    "next": [
+      "DepartureSignInGoJingcai"
+    ],
+    "on_error": [
+      "DepartureSignInStop"
+    ]
+  },
+  "DepartureSignInGoJingcai": {
+    "recognition": "OCR",
+    "expected": [
+      "精彩"
+    ],
+    "roi": [
+      500,
+      140,
+      220,
+      80
+    ],
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "DepartureSignInFindEntry"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DepartureSignInStop"
+    ]
+  },
+  "DepartureSignInFindEntry": {
+    "recognition": "OCR",
+    "expected": [
+      "启程签到"
+    ],
+    "roi": [
+      15,
+      91,
+      684,
+      1081
+    ],
+    "action": "Click",
+    "post_delay": 2000,
+    "next": [
+      "DepartureSignInClaimPage"
+    ],
+    "timeout": 8000,
+    "on_error": [
+      "DepartureSignInStop"
+    ]
+  },
+  "DepartureSignInClaimPage": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "DepartureSignInClaimByOcr",
+      "DepartureSignInClaimByColor"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DepartureSignInBack"
+    ]
+  },
+  "DepartureSignInClaimByOcr": {
+    "recognition": "OCR",
+    "expected": [
+      "签到",
+      "领取"
+    ],
+    "roi": [
+      10,
+      180,
+      690,
+      870
+    ],
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "DepartureSignInDismiss"
+    ],
+    "timeout": 8000
+  },
+  "DepartureSignInClaimByColor": {
+    "recognition": "ColorMatch",
+    "lower": [
+      [
+        0,
+        100,
+        150
+      ],
+      [
+        170,
+        100,
+        150
+      ]
+    ],
+    "upper": [
+      [
+        10,
+        255,
+        255
+      ],
+      [
+        180,
+        255,
+        255
+      ]
+    ],
+    "roi": [
+      10,
+      180,
+      690,
+      870
+    ],
+    "count": 300,
+    "method": 1,
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "DepartureSignInDismiss"
+    ],
+    "timeout": 8000
+  },
+  "DepartureSignInDismiss": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      360,
+      1230
+    ],
+    "post_delay": 800,
+    "next": [
+      "DepartureSignInBack"
+    ]
+  },
+  "DepartureSignInBack": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      77,
+      1212
+    ],
+    "post_delay": 500,
+    "next": [
+      "DepartureSignInStop"
+    ]
+  },
+  "DepartureSignInStop": {
+    "recognition": "DirectHit",
+    "action": "StopTask"
+  }
+}

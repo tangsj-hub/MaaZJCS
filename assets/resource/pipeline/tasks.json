@@ -1,0 +1,403 @@
+{
+  "DailyTasksEntry": {
+    "next": [
+      "DailyTasksBegin"
+    ],
+    "timeout": 2000
+  },
+  "DailyTasksBegin": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 800,
+    "next": [
+      "DailyTasksTapHomeBar"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "DailyTasksStop"
+    ]
+  },
+  "DailyTasksTapHomeBar": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      360,
+      -76
+    ],
+    "post_delay": 2000,
+    "next": [
+      "DailyTasksOpenSidebar"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyTasksOpenSidebar"
+    ]
+  },
+
+  "DailyTasksOpenSidebar": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      656,
+      -274
+    ],
+    "post_delay": 1500,
+    "next": [
+      "DailyTasksFindTaskTab"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyTasksFindTaskTab"
+    ]
+  },
+  "DailyTasksFindTaskTab": {
+    "recognition": "OCR",
+    "roi": [
+      100,
+      -480,
+      550,
+      380
+    ],
+    "expected": [
+      "任务"
+    ],
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "DailyTasksClaimReady"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyTasksStop"
+    ]
+  },
+
+  "DailyTasksClaimReady": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 500,
+    "next": [
+      "DailyTasksClaimDaily1"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyTasksClaimDaily1"
+    ]
+  },
+  "DailyTasksClaimDaily1": {
+    "recognition": "OCR",
+    "roi": [
+      440,
+      140,
+      220,
+      140
+    ],
+    "expected": [
+      "领取"
+    ],
+    "action": "Click",
+    "post_delay": 1000,
+    "next": [
+      "DailyTasksDismiss1"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyTasksCheckWeekly"
+    ]
+  },
+  "DailyTasksDismiss1": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      336,
+      42
+    ],
+    "post_delay": 800,
+    "next": [
+      "DailyTasksClaimDaily2"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyTasksClaimDaily2"
+    ]
+  },
+  "DailyTasksClaimDaily2": {
+    "recognition": "OCR",
+    "roi": [
+      440,
+      140,
+      220,
+      140
+    ],
+    "expected": [
+      "领取"
+    ],
+    "action": "Click",
+    "post_delay": 1000,
+    "next": [
+      "DailyTasksDismiss2"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyTasksCheckWeekly"
+    ]
+  },
+  "DailyTasksDismiss2": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      336,
+      42
+    ],
+    "post_delay": 800,
+    "next": [
+      "DailyTasksClaimDaily3"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyTasksClaimDaily3"
+    ]
+  },
+  "DailyTasksClaimDaily3": {
+    "recognition": "OCR",
+    "roi": [
+      440,
+      140,
+      220,
+      140
+    ],
+    "expected": [
+      "领取"
+    ],
+    "action": "Click",
+    "post_delay": 1000,
+    "next": [
+      "DailyTasksDismiss3"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyTasksCheckWeekly"
+    ]
+  },
+  "DailyTasksDismiss3": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      336,
+      42
+    ],
+    "post_delay": 800,
+    "next": [
+      "DailyTasksCheckWeekly"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyTasksCheckWeekly"
+    ]
+  },
+
+  "DailyTasksCheckWeekly": {
+    "recognition": "ColorMatch",
+    "roi": [
+      490,
+      -90,
+      40,
+      30
+    ],
+    "method": 4,
+    "lower": [
+      60,
+      60,
+      190
+    ],
+    "upper": [
+      95,
+      95,
+      230
+    ],
+    "count": 5,
+    "action": "DoNothing",
+    "post_delay": 300,
+    "next": [
+      "DailyTasksTapWeeklyTab"
+    ],
+    "timeout": 3000,
+    "on_error": [
+      "DailyTasksCheckMainQuest"
+    ]
+  },
+  "DailyTasksTapWeeklyTab": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      361,
+      -70
+    ],
+    "post_delay": 1500,
+    "next": [
+      "DailyTasksClaimWeekly"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyTasksClaimWeekly"
+    ]
+  },
+  "DailyTasksClaimWeekly": {
+    "recognition": "OCR",
+    "roi": [
+      440,
+      140,
+      220,
+      140
+    ],
+    "expected": [
+      "领取"
+    ],
+    "action": "Click",
+    "post_delay": 1000,
+    "next": [
+      "DailyTasksDismissWeekly"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyTasksCheckMainQuest"
+    ]
+  },
+  "DailyTasksDismissWeekly": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      336,
+      42
+    ],
+    "post_delay": 800,
+    "next": [
+      "DailyTasksCheckMainQuest"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyTasksCheckMainQuest"
+    ]
+  },
+
+  "DailyTasksCheckMainQuest": {
+    "recognition": "ColorMatch",
+    "roi": [
+      670,
+      -90,
+      40,
+      30
+    ],
+    "method": 4,
+    "lower": [
+      60,
+      60,
+      190
+    ],
+    "upper": [
+      95,
+      95,
+      230
+    ],
+    "count": 5,
+    "action": "DoNothing",
+    "post_delay": 300,
+    "next": [
+      "DailyTasksTapMainQuestTab"
+    ],
+    "timeout": 3000,
+    "on_error": [
+      "DailyTasksReturn"
+    ]
+  },
+  "DailyTasksTapMainQuestTab": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      609,
+      -57
+    ],
+    "post_delay": 1500,
+    "next": [
+      "DailyTasksClaimMainQuest"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyTasksClaimMainQuest"
+    ]
+  },
+  "DailyTasksClaimMainQuest": {
+    "recognition": "OCR",
+    "roi": [
+      440,
+      140,
+      220,
+      140
+    ],
+    "expected": [
+      "领取"
+    ],
+    "action": "Click",
+    "post_delay": 1000,
+    "next": [
+      "DailyTasksDismissMainQuest"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyTasksReturn"
+    ]
+  },
+  "DailyTasksDismissMainQuest": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      336,
+      42
+    ],
+    "post_delay": 800,
+    "next": [
+      "DailyTasksReturn"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DailyTasksReturn"
+    ]
+  },
+
+  "DailyTasksReturn": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      72,
+      -64
+    ],
+    "post_delay": 500,
+    "next": [
+      "DailyTasksReturn2"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyTasksReturn2"
+    ]
+  },
+  "DailyTasksReturn2": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      72,
+      -64
+    ],
+    "post_delay": 700,
+    "next": [
+      "DailyTasksStop"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyTasksStop"
+    ]
+  },
+  "DailyTasksStop": {
+    "recognition": "DirectHit",
+    "action": "StopTask"
+  }
+}
