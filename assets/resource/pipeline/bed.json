@@ -26,12 +26,197 @@
     ],
     "post_delay": 2000,
     "next": [
-      "DailyBedFindRace"
+      "DailyBedTipsOrFindRoute"
     ],
     "timeout": 10000,
     "on_error": [
+      "DailyBedTipsOrFindRoute"
+    ]
+  },
+  "DailyBedTipsOrFindRoute": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 400,
+    "next": [
+      "DailyBedTipsIconTmpl",
+      "DailyBedSwipeReveal1"
+    ],
+    "timeout": 12000,
+    "on_error": [
+      "DailyBedSwipeReveal1"
+    ]
+  },
+  "DailyBedTipsIconTmpl": {
+    "recognition": "TemplateMatch",
+    "template": "daily/home/xiaochuang_tips.png",
+    "roi": [
+      0,
+      160,
+      720,
+      620
+    ],
+    "threshold": 0.58,
+    "action": "Click",
+    "post_delay": 1800,
+    "next": [
+      "DailyBedPowerBubbleTmpl"
+    ],
+    "timeout": 10000
+  },
+  "DailyBedPowerBubbleTmpl": {
+    "recognition": "TemplateMatch",
+    "template": "daily/home/xiaochuang_power.png",
+    "roi": [
+      16,
+      120,
+      688,
+      720
+    ],
+    "threshold": 0.58,
+    "action": "Click",
+    "post_delay": 2500,
+    "next": [
+      "DailyBedClaimConfirm"
+    ],
+    "timeout": 12000,
+    "on_error": [
+      "DailyBedOcrFree"
+    ]
+  },
+  "DailyBedSwipeReveal1": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      600,
+      -420
+    ],
+    "end": [
+      420,
+      -420
+    ],
+    "duration": 400,
+    "post_delay": 400,
+    "next": [
+      "DailyBedSwipeReveal2"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyBedSwipeReveal2"
+    ]
+  },
+  "DailyBedSwipeReveal2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      600,
+      -420
+    ],
+    "end": [
+      420,
+      -420
+    ],
+    "duration": 400,
+    "post_delay": 400,
+    "next": [
+      "DailyBedSwipeReveal3"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyBedSwipeReveal3"
+    ]
+  },
+  "DailyBedSwipeReveal3": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      600,
+      -420
+    ],
+    "end": [
+      420,
+      -420
+    ],
+    "duration": 400,
+    "post_delay": 450,
+    "next": [
+      "DailyBedSwipeReveal4"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyBedSwipeReveal4"
+    ]
+  },
+  "DailyBedSwipeReveal4": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      600,
+      -420
+    ],
+    "end": [
+      420,
+      -420
+    ],
+    "duration": 400,
+    "post_delay": 450,
+    "next": [
+      "DailyBedSwipeReveal5"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyBedSwipeReveal5"
+    ]
+  },
+  "DailyBedSwipeReveal5": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      600,
+      -420
+    ],
+    "end": [
+      420,
+      -420
+    ],
+    "duration": 400,
+    "post_delay": 450,
+    "next": [
+      "DailyBedPowerOnMapRace"
+    ],
+    "timeout": 10000,
+    "on_error": [
+      "DailyBedPowerOnMapRace"
+    ]
+  },
+  "DailyBedPowerOnMapRace": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 350,
+    "next": [
+      "DailyBedPowerOnMapTmpl",
+      "DailyBedFindRace"
+    ],
+    "timeout": 15000,
+    "on_error": [
       "DailyBedFindRace"
     ]
+  },
+  "DailyBedPowerOnMapTmpl": {
+    "recognition": "TemplateMatch",
+    "template": "daily/home/xiaochuang_power.png",
+    "roi": [
+      0,
+      160,
+      720,
+      620
+    ],
+    "threshold": 0.58,
+    "action": "Click",
+    "post_delay": 2500,
+    "next": [
+      "DailyBedClaimConfirm"
+    ],
+    "timeout": 12000
   },
   "DailyBedFindRace": {
     "recognition": "DirectHit",

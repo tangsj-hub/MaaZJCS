@@ -1,0 +1,68 @@
+{
+  "DungeonBattlePrepEntry": {
+    "next": [
+      "DungeonBattlePrepBegin"
+    ],
+    "timeout": 300000,
+    "on_error": [
+      "DungeonBattlePrepStop"
+    ]
+  },
+  "DungeonBattlePrepBegin": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 400,
+    "next": [
+      "DungeonBattlePrepWaitReady"
+    ],
+    "timeout": 120000,
+    "on_error": [
+      "DungeonBattlePrepStop"
+    ]
+  },
+  "DungeonBattlePrepWaitReady": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 500,
+    "next": [
+      "DungeonBattlePrepClickReady"
+    ],
+    "timeout": 240000,
+    "on_error": [
+      "DungeonBattlePrepStop"
+    ]
+  },
+  "DungeonBattlePrepClickReady": {
+    "recognition": "OCR",
+    "roi": [
+      32,
+      -420,
+      656,
+      420
+    ],
+    "expected": [
+      "准备"
+    ],
+    "action": "Click",
+    "post_delay": 800,
+    "next": [
+      "DungeonBattlePrepStop"
+    ]
+  },
+  "DungeonBattlePrepStop": {
+    "recognition": "DirectHit",
+    "action": "StopTask"
+  },
+  "DungeonBattleInMapStub": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "enabled": false,
+    "next": []
+  },
+  "DungeonBattleSettleStub": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "enabled": false,
+    "next": []
+  }
+}

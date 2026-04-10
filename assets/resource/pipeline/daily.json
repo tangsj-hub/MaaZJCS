@@ -44,12 +44,42 @@
     ],
     "post_delay": 2000,
     "next": [
-      "DailyHandcartSwipeReveal1"
+      "DailyHandcartTipsOrRevealRoute"
     ],
     "timeout": 10000,
     "on_error": [
+      "DailyHandcartTipsOrRevealRoute"
+    ]
+  },
+  "DailyHandcartTipsOrRevealRoute": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 400,
+    "next": [
+      "DailyHandcartTipsIconTmpl",
+      "DailyHandcartSwipeReveal1"
+    ],
+    "timeout": 12000,
+    "on_error": [
       "DailyHandcartSwipeReveal1"
     ]
+  },
+  "DailyHandcartTipsIconTmpl": {
+    "recognition": "TemplateMatch",
+    "template": "daily/home/xiaotuiche_tips.png",
+    "roi": [
+      0,
+      160,
+      720,
+      620
+    ],
+    "threshold": 0.58,
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "DailyHandcartClaimByOcr"
+    ],
+    "timeout": 10000
   },
   "DailyHandcartSwipeReveal1": {
     "recognition": "DirectHit",

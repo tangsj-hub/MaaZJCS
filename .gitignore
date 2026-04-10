@@ -465,3 +465,6 @@ maafw/
 config/mxu-*.json
 # Maa 全局选项（日志级别、是否保存调试截图等，本机偏好；缺省时框架内有默认）
 config/maa_option.json
+
+# LobsterClaw MCP rule (auto-generated, contains dynamic tool name)
+.cursor/rules/mcp-tool.*

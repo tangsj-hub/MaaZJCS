@@ -93,10 +93,57 @@
       "description": "$task_main_quest_desc"
     },
     {
+      "name": "SeaPalaceDungeon",
+      "label": "$task_sea_palace_dungeon",
+      "entry": "SeaPalaceEntry",
+      "description": "$task_sea_palace_dungeon_desc",
+      "option": [
+        "sea_palace_difficulty"
+      ]
+    },
+    {
+      "name": "DungeonBattlePrep",
+      "label": "$task_dungeon_battle_prep",
+      "entry": "DungeonBattlePrepEntry",
+      "description": "$task_dungeon_battle_prep_desc"
+    },
+    {
       "name": "ExitGame",
       "label": "$task_exit_game",
       "entry": "ExitGameEntry",
       "description": "$task_exit_game_desc"
     }
-  ]
+  ],
+  "option": {
+    "sea_palace_difficulty": {
+      "type": "select",
+      "label": "$opt_sea_palace_difficulty",
+      "description": "$opt_sea_palace_difficulty_desc",
+      "default_case": "normal",
+      "cases": [
+        {
+          "name": "normal",
+          "label": "$opt_sea_palace_difficulty_normal",
+          "pipeline_override": {
+            "SeaPalaceSelectDifficulty": {
+              "expected": [
+                "普通"
+              ]
+            }
+          }
+        },
+        {
+          "name": "hard",
+          "label": "$opt_sea_palace_difficulty_hard",
+          "pipeline_override": {
+            "SeaPalaceSelectDifficulty": {
+              "expected": [
+                "困难"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
 }
