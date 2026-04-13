@@ -1,149 +1,321 @@
 {
-  "interface_version": 2,
-  "languages": {
-    "zh_cn": "interface_zh.json"
-  },
-  "name": "MaaZJCS",
-  "label": "$project_name",
-  "title": "$project_title",
-  "version": "0.1.0",
-  "description": "$project_description",
-  "controller": [
-    {
-      "name": "Android",
-      "label": "$controller_android",
-      "description": "$controller_android_desc",
-      "type": "Adb",
-      "display_short_side": 720
-    }
-  ],
-  "resource": [
-    {
-      "name": "Official",
-      "label": "$resource_official",
-      "description": "$resource_official_desc",
-      "path": [
-        "assets/resource"
-      ],
-      "controller": [
-        "Android"
-      ]
-    }
-  ],
-  "task": [
-    {
-      "name": "StartupAndHome",
-      "label": "$task_startup_home",
-      "entry": "StartupEntry",
-      "default_check": true,
-      "description": "$task_startup_home_desc"
+    "interface_version": 2,
+    "languages": {
+        "zh_cn": "interface_zh.json"
     },
-    {
-      "name": "DailyHandcart",
-      "label": "$task_daily_handcart",
-      "entry": "DailyHandcartEntry",
-      "description": "$task_daily_handcart_desc"
-    },
-    {
-      "name": "DailyHandcartFromCart",
-      "label": "$task_daily_handcart_from_cart",
-      "entry": "DailyHandcartAtCartEntry",
-      "description": "$task_daily_handcart_from_cart_desc"
-    },
-    {
-      "name": "DailyBed",
-      "label": "$task_daily_bed",
-      "entry": "DailyBedEntry",
-      "description": "$task_daily_bed_desc"
-    },
-    {
-      "name": "DailyShop",
-      "label": "$task_daily_shop",
-      "entry": "DailyShopEntry",
-      "description": "$task_daily_shop_desc"
-    },
-    {
-      "name": "DailyTasks",
-      "label": "$task_daily_tasks",
-      "entry": "DailyTasksEntry",
-      "description": "$task_daily_tasks_desc"
-    },
-    {
-      "name": "DailySignIn",
-      "label": "$task_daily_sign_in",
-      "entry": "DailySignInEntry",
-      "description": "$task_daily_sign_in_desc"
-    },
-    {
-      "name": "GrowthTrial",
-      "label": "$task_growth_trial",
-      "entry": "GrowthTrialEntry",
-      "description": "$task_growth_trial_desc"
-    },
-    {
-      "name": "DepartureSignIn",
-      "label": "$task_departure_sign_in",
-      "entry": "DepartureSignInEntry",
-      "description": "$task_departure_sign_in_desc"
-    },
-    {
-      "name": "MainQuest",
-      "label": "$task_main_quest",
-      "entry": "MainQuestEntry",
-      "description": "$task_main_quest_desc"
-    },
-    {
-      "name": "SeaPalaceDungeon",
-      "label": "$task_sea_palace_dungeon",
-      "entry": "SeaPalaceEntry",
-      "description": "$task_sea_palace_dungeon_desc",
-      "option": [
-        "sea_palace_difficulty"
-      ]
-    },
-    {
-      "name": "DungeonBattlePrep",
-      "label": "$task_dungeon_battle_prep",
-      "entry": "DungeonBattlePrepEntry",
-      "description": "$task_dungeon_battle_prep_desc"
-    },
-    {
-      "name": "ExitGame",
-      "label": "$task_exit_game",
-      "entry": "ExitGameEntry",
-      "description": "$task_exit_game_desc"
-    }
-  ],
-  "option": {
-    "sea_palace_difficulty": {
-      "type": "select",
-      "label": "$opt_sea_palace_difficulty",
-      "description": "$opt_sea_palace_difficulty_desc",
-      "default_case": "normal",
-      "cases": [
+    "name": "MaaZJCS",
+    "label": "$project_name",
+    "title": "$project_title",
+    "version": "0.1.0",
+    "description": "$project_description",
+    "controller": [
         {
-          "name": "normal",
-          "label": "$opt_sea_palace_difficulty_normal",
-          "pipeline_override": {
-            "SeaPalaceSelectDifficulty": {
-              "expected": [
-                "普通"
-              ]
-            }
-          }
+            "name": "Android",
+            "label": "$controller_android",
+            "description": "$controller_android_desc",
+            "type": "Adb",
+            "display_short_side": 720
+        }
+    ],
+    "resource": [
+        {
+            "name": "Official",
+            "label": "$resource_official",
+            "description": "$resource_official_desc",
+            "path": [
+                "assets/resource"
+            ],
+            "controller": [
+                "Android"
+            ]
+        }
+    ],
+    "task": [
+        {
+            "name": "StartupAndHome",
+            "label": "$task_startup_home",
+            "entry": "StartupEntry",
+            "default_check": true,
+            "description": "$task_startup_home_desc"
         },
         {
-          "name": "hard",
-          "label": "$opt_sea_palace_difficulty_hard",
-          "pipeline_override": {
-            "SeaPalaceSelectDifficulty": {
-              "expected": [
-                "困难"
-              ]
-            }
-          }
+            "name": "DailyHandcart",
+            "label": "$task_daily_handcart",
+            "entry": "DailyHandcartEntry",
+            "description": "$task_daily_handcart_desc"
+        },
+        {
+            "name": "DailyHandcartFromCart",
+            "label": "$task_daily_handcart_from_cart",
+            "entry": "DailyHandcartAtCartEntry",
+            "description": "$task_daily_handcart_from_cart_desc"
+        },
+        {
+            "name": "DailyBed",
+            "label": "$task_daily_bed",
+            "entry": "DailyBedEntry",
+            "description": "$task_daily_bed_desc"
+        },
+        {
+            "name": "DailyShop",
+            "label": "$task_daily_shop",
+            "entry": "DailyShopEntry",
+            "description": "$task_daily_shop_desc"
+        },
+        {
+            "name": "DailyTasks",
+            "label": "$task_daily_tasks",
+            "entry": "DailyTasksEntry",
+            "description": "$task_daily_tasks_desc"
+        },
+        {
+            "name": "DailySignIn",
+            "label": "$task_daily_sign_in",
+            "entry": "DailySignInEntry",
+            "description": "$task_daily_sign_in_desc"
+        },
+        {
+            "name": "GrowthTrial",
+            "label": "$task_growth_trial",
+            "entry": "GrowthTrialEntry",
+            "description": "$task_growth_trial_desc"
+        },
+        {
+            "name": "DepartureSignIn",
+            "label": "$task_departure_sign_in",
+            "entry": "DepartureSignInEntry",
+            "description": "$task_departure_sign_in_desc"
+        },
+        {
+            "name": "MainQuest",
+            "label": "$task_main_quest",
+            "entry": "MainQuestEntry",
+            "description": "$task_main_quest_desc"
+        },
+        {
+            "name": "Dungeon",
+            "label": "$task_dungeon",
+            "entry": "DungeonEntry",
+            "description": "$task_dungeon_desc",
+            "option": [
+                "dungeon_type",
+                "dungeon_difficulty"
+            ]
+        },
+        {
+            "name": "DungeonBattlePrep",
+            "label": "$task_dungeon_battle_prep",
+            "entry": "DungeonBattlePrepEntry",
+            "description": "$task_dungeon_battle_prep_desc",
+            "option": [
+                "battle_mode",
+                "claim_reward",
+                "dungeon_difficulty",
+                "like_team"
+            ]
+        },
+        {
+            "name": "ExitGame",
+            "label": "$task_exit_game",
+            "entry": "ExitGameEntry",
+            "description": "$task_exit_game_desc"
         }
-      ]
+    ],
+    "option": {
+        "dungeon_type": {
+            "type": "select",
+            "label": "$opt_dungeon_type",
+            "description": "$opt_dungeon_type_desc",
+            "default_case": "sea_palace",
+            "cases": [
+                {
+                    "name": "world_tree",
+                    "label": "$opt_dungeon_type_world_tree",
+                    "pipeline_override": {
+                        "DungeonTapDungeonName": {
+                            "expected": [
+                                "世界之树",
+                                "世界树"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "mecha_mountain",
+                    "label": "$opt_dungeon_type_mecha_mountain",
+                    "pipeline_override": {
+                        "DungeonTapDungeonName": {
+                            "expected": [
+                                "机神山",
+                                "机神"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "sea_palace",
+                    "label": "$opt_dungeon_type_sea_palace",
+                    "pipeline_override": {
+                        "DungeonTapDungeonName": {
+                            "expected": [
+                                "海之宫遗迹",
+                                "海之宫"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "water_source",
+                    "label": "$opt_dungeon_type_water_source",
+                    "pipeline_override": {
+                        "DungeonTapDungeonName": {
+                            "expected": [
+                                "源水大社",
+                                "源水"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "dungeon_difficulty": {
+            "type": "select",
+            "label": "$opt_dungeon_difficulty",
+            "description": "$opt_dungeon_difficulty_desc",
+            "default_case": "normal",
+            "cases": [
+                {
+                    "name": "normal",
+                    "label": "$opt_dungeon_difficulty_normal",
+                    "pipeline_override": {
+                        "DungeonSelectDifficulty": {
+                            "expected": [
+                                "普通"
+                            ]
+                        },
+                        "DungeonBattlePopupNormalOcr": {
+                            "expected": [
+                                "普通"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "hard",
+                    "label": "$opt_dungeon_difficulty_hard",
+                    "pipeline_override": {
+                        "DungeonSelectDifficulty": {
+                            "expected": [
+                                "困难"
+                            ]
+                        },
+                        "DungeonBattlePopupHardOcr": {
+                            "expected": [
+                                "困难"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "battle_mode": {
+            "type": "select",
+            "label": "$opt_battle_mode",
+            "description": "$opt_battle_mode_desc",
+            "default_case": "match",
+            "cases": [
+                {
+                    "name": "match",
+                    "label": "$opt_battle_mode_match",
+                    "pipeline_override": {
+                        "DungeonBattlePrepEntry": {
+                            "next": [
+                                "DungeonTapScreenArea"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "leader",
+                    "label": "$opt_battle_mode_leader",
+                    "pipeline_override": {
+                        "DungeonBattlePrepEntry": {
+                            "next": [
+                                "DungeonLeaderMode"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "member",
+                    "label": "$opt_battle_mode_member",
+                    "pipeline_override": {
+                        "DungeonBattlePrepEntry": {
+                            "next": [
+                                "DungeonMemberMode"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "like_team": {
+            "type": "select",
+            "label": "$opt_like_team",
+            "description": "$opt_like_team_desc",
+            "default_case": "skip",
+            "cases": [
+                {
+                    "name": "like",
+                    "label": "$opt_like_team_like",
+                    "pipeline_override": {
+                        "DungeonBattleLikeTeam": {
+                            "action": "Click"
+                        }
+                    }
+                },
+                {
+                    "name": "skip",
+                    "label": "$opt_like_team_skip",
+                    "pipeline_override": {
+                        "DungeonBattleLikeTeam": {
+                            "action": "DoNothing"
+                        }
+                    }
+                }
+            ]
+        },
+        "claim_reward": {
+            "type": "select",
+            "label": "$opt_claim_reward",
+            "description": "$opt_claim_reward_desc",
+            "default_case": "claim",
+            "cases": [
+                {
+                    "name": "claim",
+                    "label": "$opt_claim_reward_claim",
+                    "pipeline_override": {
+                        "DungeonBattleClaimRewardOcr": {
+                            "action": "Click",
+                            "next": [
+                                "DungeonBattleTapTopArea"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "skip",
+                    "label": "$opt_claim_reward_skip",
+                    "pipeline_override": {
+                        "DungeonBattleClaimRewardOcr": {
+                            "action": "DoNothing",
+                            "next": [
+                                "DungeonBattleTapTopArea"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
     }
-  }
 }

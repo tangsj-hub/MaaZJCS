@@ -468,3 +468,4 @@ config/maa_option.json
 
 # LobsterClaw MCP rule (auto-generated, contains dynamic tool name)
 .cursor/rules/mcp-tool.*
+.windsurf/rules/mcp-tool.md

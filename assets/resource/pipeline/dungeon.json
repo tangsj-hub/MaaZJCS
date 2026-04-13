@@ -1,470 +1,1484 @@
 {
-  "SeaPalaceEntry": {
-    "next": [
-      "SeaPalaceBegin"
-    ],
-    "timeout": 300000,
-    "on_error": [
-      "SeaPalaceStop"
-    ]
-  },
-  "SeaPalaceBegin": {
-    "recognition": "DirectHit",
-    "action": "DoNothing",
-    "post_delay": 600,
-    "next": [
-      "SeaPalaceTapHomeFirst"
-    ],
-    "timeout": 120000,
-    "on_error": [
-      "SeaPalaceStop"
-    ]
-  },
-  "SeaPalaceTapHomeFirst": {
-    "recognition": "DirectHit",
-    "action": "Click",
-    "target": [
-      216,
-      -76
-    ],
-    "post_delay": 1600,
-    "next": [
-      "SeaPalaceRouteByUi"
-    ],
-    "timeout": 10000,
-    "on_error": [
-      "SeaPalaceRouteByUi"
-    ]
-  },
-  "SeaPalaceRouteByUi": {
-    "recognition": "DirectHit",
-    "action": "DoNothing",
-    "post_delay": 350,
-    "next": [
-      "SeaPalaceUiNotesTabSelectedBiji2Tmpl",
-      "SeaPalaceUiNotesTabUnselectedBijiTmpl",
-      "SeaPalaceUiBottomNotesOcr",
-      "SeaPalaceUiReadyOcr",
-      "SeaPalaceUiMatchOcr",
-      "SeaPalaceUiSeaRuinsOcr",
-      "SeaPalaceUiBottomShellTabsOcr",
-      "SeaPalaceRecoverTapHome",
-      "SeaPalaceUiBackIconTmpl",
-      "SeaPalaceUiBackOcr"
-    ],
-    "timeout": 40000,
-    "on_error": [
-      "SeaPalaceRecoverTapHome"
-    ]
-  },
-  "SeaPalaceUiBackIconTmpl": {
-    "recognition": "TemplateMatch",
-    "template": "common/fanhui.png",
-    "roi": [
-      0,
-      -280,
-      72,
-      280
-    ],
-    "threshold": 0.17,
-    "action": "Click",
-    "post_delay": 700,
-    "next": [
-      "SeaPalaceRouteByUi"
-    ],
-    "timeout": 4000
-  },
-  "SeaPalaceUiBackOcr": {
-    "recognition": "OCR",
-    "roi": [
-      0,
-      -320,
-      90,
-      320
-    ],
-    "expected": [
-      "返回",
-      "后退"
-    ],
-    "action": "Click",
-    "post_delay": 700,
-    "next": [
-      "SeaPalaceRouteByUi"
-    ],
-    "timeout": 3500
-  },
-  "SeaPalaceUiReadyOcr": {
-    "recognition": "OCR",
-    "roi": [
-      32,
-      -420,
-      656,
-      420
-    ],
-    "expected": [
-      "准备"
-    ],
-    "action": "Click",
-    "post_delay": 1500,
-    "next": [
-      "SeaPalaceStop"
-    ],
-    "timeout": 3500
-  },
-  "SeaPalaceUiMatchOcr": {
-    "recognition": "OCR",
-    "roi": [
-      24,
-      -320,
-      672,
-      320
-    ],
-    "expected": [
-      "匹配"
-    ],
-    "action": "Click",
-    "post_delay": 2000,
-    "next": [
-      "SeaPalaceTapAcceptOcr"
-    ],
-    "timeout": 4000
-  },
-  "SeaPalaceUiSeaRuinsOcr": {
-    "recognition": "OCR",
-    "roi": [
-      16,
-      140,
-      688,
-      820
-    ],
-    "expected": [
-      "海之宫遗迹",
-      "海之宫"
-    ],
-    "action": "Click",
-    "post_delay": 1200,
-    "next": [
-      "SeaPalaceSelectDifficulty"
-    ],
-    "timeout": 4500
-  },
-  "SeaPalaceUiNotesTabSelectedBiji2Tmpl": {
-    "recognition": "TemplateMatch",
-    "template": "common/biji2.png",
-    "roi": [
-      96,
-      -300,
-      288,
-      300
-    ],
-    "threshold": 0.52,
-    "order_by": "Score",
-    "action": "DoNothing",
-    "post_delay": 350,
-    "next": [
-      "SeaPalaceUiDailyDungeonOcr",
-      "SeaPalaceUiDailyDungeonOcrGarbage"
-    ],
-    "timeout": 2200,
-    "on_error": [
-      "SeaPalaceRecoverNotesByFixedPos",
-      "SeaPalaceRouteByUi"
-    ]
-  },
-  "SeaPalaceUiNotesTabUnselectedBijiTmpl": {
-    "recognition": "TemplateMatch",
-    "template": "common/biji.png",
-    "roi": [
-      96,
-      -300,
-      288,
-      300
-    ],
-    "threshold": 0.47,
-    "order_by": "Score",
-    "action": "Click",
-    "post_delay": 1600,
-    "next": [
-      "SeaPalaceRouteByUi"
-    ],
-    "timeout": 2200
-  },
-  "SeaPalaceUiDailyDungeonOcr": {
-    "recognition": "OCR",
-    "roi": [
-      16,
-      120,
-      688,
-      960
-    ],
-    "expected": [
-      "日常副本"
-    ],
-    "action": "Click",
-    "post_delay": 1400,
-    "next": [
-      "SeaPalaceTapSeaRuinsName"
-    ],
-    "timeout": 4500
-  },
-  "SeaPalaceUiDailyDungeonOcrGarbage": {
-    "recognition": "OCR",
-    "roi": [
-      16,
-      120,
-      688,
-      960
-    ],
-    "expected": [
-      "ybjisho",
-      "ybjishom",
-      "jishom"
-    ],
-    "action": "Click",
-    "post_delay": 1400,
-    "next": [
-      "SeaPalaceTapSeaRuinsName"
-    ],
-    "timeout": 4500
-  },
-  "SeaPalaceUiBottomNotesOcr": {
-    "recognition": "OCR",
-    "roi": [
-      0,
-      -240,
-      720,
-      240
-    ],
-    "expected": [
-      "笔记"
-    ],
-    "action": "Click",
-    "post_delay": 1600,
-    "next": [
-      "SeaPalaceRouteByUi"
-    ],
-    "timeout": 2200
-  },
-  "SeaPalaceUiBottomShellTabsOcr": {
-    "recognition": "OCR",
-    "roi": [
-      0,
-      -240,
-      720,
-      240
-    ],
-    "expected": [
-      "探索",
-      "商店",
-      "精彩",
-      "活动",
-      "盟会",
-      "公会"
-    ],
-    "action": "DoNothing",
-    "post_delay": 200,
-    "next": [
-      "SeaPalaceRecoverTapHome"
-    ],
-    "timeout": 4000
-  },
-  "SeaPalaceRecoverTapHome": {
-    "recognition": "DirectHit",
-    "action": "Click",
-    "target": [
-      216,
-      -76
-    ],
-    "post_delay": 1400,
-    "next": [
-      "SeaPalaceRecoverBijiLocate",
-      "SeaPalaceRecoverNotesByFixedPos"
-    ],
-    "timeout": 10000,
-    "on_error": [
-      "SeaPalaceRecoverNotesByFixedPos"
-    ]
-  },
-  "SeaPalaceRecoverBijiLocate": {
-    "recognition": "TemplateMatch",
-    "template": "common/biji.png",
-    "roi": [
-      96,
-      -300,
-      288,
-      300
-    ],
-    "threshold": 0.47,
-    "order_by": "Score",
-    "action": "DoNothing",
-    "post_delay": 200,
-    "next": [
-      "SeaPalaceRecoverBijiClick"
-    ],
-    "timeout": 2200
-  },
-  "SeaPalaceRecoverBijiClick": {
-    "recognition": "DirectHit",
-    "action": "Click",
-    "target": "SeaPalaceRecoverBijiLocate",
-    "pre_delay": 350,
-    "repeat": 2,
-    "repeat_delay": 250,
-    "post_delay": 1400,
-    "next": [
-      "SeaPalaceRouteByUi"
-    ],
-    "timeout": 5000,
-    "on_error": [
-      "SeaPalaceRecoverNotesByFixedPos"
-    ]
-  },
-  "SeaPalaceRecoverNotesByFixedPos": {
-    "recognition": "DirectHit",
-    "action": "Click",
-    "target": [
-      216,
-      -76
-    ],
-    "post_delay": 1200,
-    "next": [
-      "SeaPalaceRouteByUi"
-    ],
-    "timeout": 10000,
-    "on_error": [
-      "SeaPalaceRouteByUi"
-    ]
-  },
-  "SeaPalaceTapSeaRuinsName": {
-    "recognition": "OCR",
-    "roi": [
-      16,
-      140,
-      688,
-      820
-    ],
-    "expected": [
-      "海之宫遗迹",
-      "海之宫"
-    ],
-    "action": "Click",
-    "post_delay": 1200,
-    "next": [
-      "SeaPalaceSelectDifficulty"
-    ],
-    "timeout": 15000,
-    "on_error": [
-      "SeaPalaceSwipeListForRuins"
-    ]
-  },
-  "SeaPalaceSwipeListForRuins": {
-    "recognition": "DirectHit",
-    "action": "Swipe",
-    "begin": [
-      360,
-      620
-    ],
-    "end": [
-      360,
-      280
-    ],
-    "duration": 450,
-    "post_delay": 800,
-    "next": [
-      "SeaPalaceTapSeaRuinsNameRetry"
-    ],
-    "timeout": 10000,
-    "on_error": [
-      "SeaPalaceTapSeaRuinsNameRetry"
-    ]
-  },
-  "SeaPalaceTapSeaRuinsNameRetry": {
-    "recognition": "OCR",
-    "roi": [
-      16,
-      140,
-      688,
-      820
-    ],
-    "expected": [
-      "海之宫遗迹",
-      "海之宫"
-    ],
-    "action": "Click",
-    "post_delay": 1200,
-    "next": [
-      "SeaPalaceSelectDifficulty"
-    ],
-    "timeout": 15000,
-    "on_error": [
-      "SeaPalaceRouteByUi"
-    ]
-  },
-  "SeaPalaceSelectDifficulty": {
-    "recognition": "OCR",
-    "roi": [
-      0,
-      -220,
-      720,
-      220
-    ],
-    "expected": [
-      "普通"
-    ],
-    "action": "Click",
-    "post_delay": 900,
-    "next": [
-      "SeaPalaceTapMatch"
-    ],
-    "timeout": 12000,
-    "on_error": [
-      "SeaPalaceRouteByUi"
-    ]
-  },
-  "SeaPalaceTapMatch": {
-    "recognition": "OCR",
-    "roi": [
-      24,
-      -320,
-      672,
-      320
-    ],
-    "expected": [
-      "匹配"
-    ],
-    "action": "Click",
-    "post_delay": 2000,
-    "next": [
-      "SeaPalaceTapAcceptOcr"
-    ],
-    "timeout": 15000,
-    "on_error": [
-      "SeaPalaceRouteByUi"
-    ]
-  },
-  "SeaPalaceTapAcceptOcr": {
-    "recognition": "OCR",
-    "roi": [
-      16,
-      -440,
-      688,
-      440
-    ],
-    "expected": [
-      "接受"
-    ],
-    "action": "Click",
-    "post_delay": 1200,
-    "next": [
-      "SeaPalaceStop"
-    ],
-    "timeout": 240000,
-    "on_error": [
-      "SeaPalaceStop"
-    ]
-  },
-  "SeaPalaceStop": {
-    "recognition": "DirectHit",
-    "action": "StopTask"
-  }
+    "DungeonEntry": {
+        "next": [
+            "DungeonBegin"
+        ],
+        "timeout": 300000,
+        "on_error": [
+            "DungeonStop"
+        ]
+    },
+    "DungeonBegin": {
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 600,
+        "next": [
+            "DungeonTapHomeFirst"
+        ],
+        "timeout": 120000,
+        "on_error": [
+            "DungeonStop"
+        ]
+    },
+    "DungeonTapHomeFirst": {
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": [
+            216,
+            -76
+        ],
+        "post_delay": 1600,
+        "next": [
+            "DungeonRouteByUi"
+        ],
+        "timeout": 10000,
+        "on_error": [
+            "DungeonRouteByUi"
+        ]
+    },
+    "DungeonRouteByUi": {
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 350,
+        "next": [
+            "DungeonUiNotesTabSelectedBiji2Tmpl",
+            "DungeonUiNotesTabUnselectedBijiTmpl",
+            "DungeonUiBottomNotesOcr",
+            "DungeonUiReadyOcr",
+            "DungeonUiMatchOcr",
+            "DungeonUiBackIconTmpl",
+            "DungeonUiBackOcr"
+        ],
+        "timeout": 40000,
+        "on_error": [
+            "DungeonRecoverTapHome"
+        ]
+    },
+    "DungeonUiBackIconTmpl": {
+        "recognition": "TemplateMatch",
+        "template": "common/fanhui.png",
+        "roi": [
+            0,
+            -280,
+            72,
+            280
+        ],
+        "threshold": 0.17,
+        "action": "Click",
+        "post_delay": 700,
+        "next": [
+            "DungeonRouteByUi"
+        ],
+        "timeout": 4000
+    },
+    "DungeonUiBackOcr": {
+        "recognition": "OCR",
+        "roi": [
+            0,
+            -320,
+            90,
+            320
+        ],
+        "expected": [
+            "返回",
+            "后退"
+        ],
+        "action": "Click",
+        "post_delay": 700,
+        "next": [
+            "DungeonRouteByUi"
+        ],
+        "timeout": 3500
+    },
+    "DungeonUiReadyOcr": {
+        "recognition": "OCR",
+        "roi": [
+            32,
+            -420,
+            656,
+            420
+        ],
+        "expected": [
+            "准备"
+        ],
+        "action": "Click",
+        "post_delay": 1500,
+        "next": [
+            "DungeonStop"
+        ],
+        "timeout": 3500
+    },
+    "DungeonUiMatchOcr": {
+        "recognition": "OCR",
+        "roi": [
+            24,
+            -320,
+            672,
+            320
+        ],
+        "expected": [
+            "匹配"
+        ],
+        "action": "Click",
+        "post_delay": 2000,
+        "next": [
+            "DungeonMatchLoop"
+        ],
+        "timeout": 4000
+    },
+    "DungeonUiNotesTabSelectedBiji2Tmpl": {
+        "recognition": "TemplateMatch",
+        "template": "common/biji2.png",
+        "roi": [
+            96,
+            -300,
+            288,
+            300
+        ],
+        "threshold": 0.52,
+        "order_by": "Score",
+        "action": "DoNothing",
+        "post_delay": 350,
+        "next": [
+            "DungeonUiDailyDungeonOcr",
+            "DungeonUiDailyDungeonOcrGarbage"
+        ],
+        "timeout": 2200,
+        "on_error": [
+            "DungeonRecoverNotesByFixedPos",
+            "DungeonRouteByUi"
+        ]
+    },
+    "DungeonUiNotesTabUnselectedBijiTmpl": {
+        "recognition": "TemplateMatch",
+        "template": "common/biji.png",
+        "roi": [
+            96,
+            -300,
+            288,
+            300
+        ],
+        "threshold": 0.47,
+        "order_by": "Score",
+        "action": "Click",
+        "post_delay": 1600,
+        "next": [
+            "DungeonRouteByUi"
+        ],
+        "timeout": 2200
+    },
+    "DungeonUiDailyDungeonOcr": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            120,
+            688,
+            960
+        ],
+        "expected": [
+            "日常副本"
+        ],
+        "action": "Click",
+        "post_delay": 1400,
+        "next": [
+            "DungeonTapDungeonName"
+        ],
+        "timeout": 4500
+    },
+    "DungeonUiDailyDungeonOcrGarbage": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            120,
+            688,
+            960
+        ],
+        "expected": [
+            "ybjisho",
+            "ybjishom",
+            "jishom"
+        ],
+        "action": "Click",
+        "post_delay": 1400,
+        "next": [
+            "DungeonTapDungeonName"
+        ],
+        "timeout": 4500
+    },
+    "DungeonUiBottomNotesOcr": {
+        "recognition": "OCR",
+        "roi": [
+            0,
+            -240,
+            720,
+            240
+        ],
+        "expected": [
+            "笔记"
+        ],
+        "action": "Click",
+        "post_delay": 1600,
+        "next": [
+            "DungeonRouteByUi"
+        ],
+        "timeout": 2200
+    },
+    "DungeonRecoverTapHome": {
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": [
+            216,
+            -76
+        ],
+        "post_delay": 1400,
+        "next": [
+            "DungeonRecoverBijiLocate",
+            "DungeonRecoverNotesByFixedPos"
+        ],
+        "timeout": 10000,
+        "on_error": [
+            "DungeonRecoverNotesByFixedPos"
+        ]
+    },
+    "DungeonRecoverBijiLocate": {
+        "recognition": "TemplateMatch",
+        "template": "common/biji.png",
+        "roi": [
+            96,
+            -300,
+            288,
+            300
+        ],
+        "threshold": 0.47,
+        "order_by": "Score",
+        "action": "DoNothing",
+        "post_delay": 200,
+        "next": [
+            "DungeonRecoverBijiClick"
+        ],
+        "timeout": 2200
+    },
+    "DungeonRecoverBijiClick": {
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": "DungeonRecoverBijiLocate",
+        "pre_delay": 350,
+        "repeat": 2,
+        "repeat_delay": 250,
+        "post_delay": 1400,
+        "next": [
+            "DungeonRouteByUi"
+        ],
+        "timeout": 5000,
+        "on_error": [
+            "DungeonRecoverNotesByFixedPos"
+        ]
+    },
+    "DungeonRecoverNotesByFixedPos": {
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": [
+            216,
+            -76
+        ],
+        "post_delay": 1200,
+        "next": [
+            "DungeonRouteByUi"
+        ],
+        "timeout": 10000,
+        "on_error": [
+            "DungeonRouteByUi"
+        ]
+    },
+    "DungeonTapDungeonName": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            140,
+            688,
+            820
+        ],
+        "expected": [
+            "海之宫遗迹",
+            "海之宫"
+        ],
+        "action": "Click",
+        "post_delay": 1200,
+        "next": [
+            "DungeonSelectDifficulty"
+        ],
+        "timeout": 15000,
+        "on_error": [
+            "DungeonSwipeDownList1"
+        ]
+    },
+    "DungeonSwipeDownList1": {
+        "recognition": "DirectHit",
+        "action": "Swipe",
+        "begin": [
+            360,
+            620
+        ],
+        "end": [
+            360,
+            280
+        ],
+        "duration": 450,
+        "post_delay": 800,
+        "next": [
+            "DungeonTapDungeonNameRetry1"
+        ],
+        "timeout": 10000,
+        "on_error": [
+            "DungeonTapDungeonNameRetry1"
+        ]
+    },
+    "DungeonTapDungeonNameRetry1": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            140,
+            688,
+            820
+        ],
+        "expected": [
+            "海之宫遗迹",
+            "海之宫"
+        ],
+        "action": "Click",
+        "post_delay": 1200,
+        "next": [
+            "DungeonSelectDifficulty"
+        ],
+        "timeout": 15000,
+        "on_error": [
+            "DungeonSwipeUpList1"
+        ]
+    },
+    "DungeonSwipeUpList1": {
+        "recognition": "DirectHit",
+        "action": "Swipe",
+        "begin": [
+            360,
+            280
+        ],
+        "end": [
+            360,
+            620
+        ],
+        "duration": 450,
+        "post_delay": 800,
+        "next": [
+            "DungeonTapDungeonNameRetry2"
+        ],
+        "timeout": 10000,
+        "on_error": [
+            "DungeonTapDungeonNameRetry2"
+        ]
+    },
+    "DungeonTapDungeonNameRetry2": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            140,
+            688,
+            820
+        ],
+        "expected": [
+            "海之宫遗迹",
+            "海之宫"
+        ],
+        "action": "Click",
+        "post_delay": 1200,
+        "next": [
+            "DungeonSelectDifficulty"
+        ],
+        "timeout": 15000,
+        "on_error": [
+            "DungeonSwipeDownList2"
+        ]
+    },
+    "DungeonSwipeDownList2": {
+        "recognition": "DirectHit",
+        "action": "Swipe",
+        "begin": [
+            360,
+            620
+        ],
+        "end": [
+            360,
+            280
+        ],
+        "duration": 450,
+        "post_delay": 800,
+        "next": [
+            "DungeonTapDungeonNameRetry3"
+        ],
+        "timeout": 10000,
+        "on_error": [
+            "DungeonTapDungeonNameRetry3"
+        ]
+    },
+    "DungeonTapDungeonNameRetry3": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            140,
+            688,
+            820
+        ],
+        "expected": [
+            "海之宫遗迹",
+            "海之宫"
+        ],
+        "action": "Click",
+        "post_delay": 1200,
+        "next": [
+            "DungeonSelectDifficulty"
+        ],
+        "timeout": 15000,
+        "on_error": [
+            "DungeonSwipeUpList2"
+        ]
+    },
+    "DungeonSwipeUpList2": {
+        "recognition": "DirectHit",
+        "action": "Swipe",
+        "begin": [
+            360,
+            280
+        ],
+        "end": [
+            360,
+            620
+        ],
+        "duration": 450,
+        "post_delay": 800,
+        "next": [
+            "DungeonTapDungeonNameRetry4"
+        ],
+        "timeout": 10000,
+        "on_error": [
+            "DungeonTapDungeonNameRetry4"
+        ]
+    },
+    "DungeonTapDungeonNameRetry4": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            140,
+            688,
+            820
+        ],
+        "expected": [
+            "海之宫遗迹",
+            "海之宫"
+        ],
+        "action": "Click",
+        "post_delay": 1200,
+        "next": [
+            "DungeonSelectDifficulty"
+        ],
+        "timeout": 15000,
+        "on_error": [
+            "DungeonStop"
+        ]
+    },
+    "DungeonSelectDifficulty": {
+        "recognition": "OCR",
+        "roi": [
+            0,
+            -220,
+            720,
+            220
+        ],
+        "expected": [
+            "普通"
+        ],
+        "action": "Click",
+        "post_delay": 900,
+        "next": [
+            "DungeonTapMatch"
+        ],
+        "timeout": 12000,
+        "on_error": [
+            "DungeonRouteByUi"
+        ]
+    },
+    "DungeonTapMatch": {
+        "recognition": "OCR",
+        "roi": [
+            24,
+            -320,
+            672,
+            320
+        ],
+        "expected": [
+            "匹配"
+        ],
+        "action": "Click",
+        "post_delay": 2000,
+        "next": [
+            "DungeonMatchLoop"
+        ],
+        "timeout": 15000,
+        "on_error": [
+            "DungeonRouteByUi"
+        ]
+    },
+    "DungeonMatchLoop": {
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 500,
+        "next": [
+            "DungeonTapAcceptOcr",
+            "DungeonUiReadyOcr",
+            "DungeonMatchLoop"
+        ],
+        "timeout": 240000,
+        "on_error": [
+            "DungeonTapMatch"
+        ]
+    },
+    "DungeonTapAcceptOcr": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            -440,
+            688,
+            440
+        ],
+        "expected": [
+            "接受"
+        ],
+        "action": "Click",
+        "post_delay": 1200,
+        "next": [
+            "DungeonMatchLoop"
+        ],
+        "timeout": 5000,
+        "on_error": [
+            "DungeonMatchLoop"
+        ]
+    },
+    "DungeonStop": {
+        "recognition": "DirectHit",
+        "action": "StopTask"
+    },
+    "SeaPalaceEntry": {
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 600,
+        "next": [
+            "SeaPalaceTapHomeFirst"
+        ],
+        "timeout": 120000,
+        "on_error": [
+            "SeaPalaceStop"
+        ]
+    },
+    "SeaPalaceTapHomeFirst": {
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": [
+            216,
+            -76
+        ],
+        "post_delay": 1600,
+        "next": [
+            "SeaPalaceRouteByUi"
+        ],
+        "timeout": 10000,
+        "on_error": [
+            "SeaPalaceRouteByUi"
+        ]
+    },
+    "SeaPalaceRouteByUi": {
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 350,
+        "next": [
+            "SeaPalaceUiNotesTabSelectedBiji2Tmpl",
+            "SeaPalaceUiNotesTabUnselectedBijiTmpl",
+            "SeaPalaceUiBottomNotesOcr",
+            "SeaPalaceUiReadyOcr",
+            "SeaPalaceUiMatchOcr",
+            "SeaPalaceUiSeaRuinsOcr",
+            "SeaPalaceUiBottomShellTabsOcr",
+            "SeaPalaceRecoverTapHome",
+            "SeaPalaceUiBackIconTmpl",
+            "SeaPalaceUiBackOcr"
+        ],
+        "timeout": 40000,
+        "on_error": [
+            "SeaPalaceRecoverTapHome"
+        ]
+    },
+    "SeaPalaceUiBackIconTmpl": {
+        "recognition": "TemplateMatch",
+        "template": "common/fanhui.png",
+        "roi": [
+            0,
+            -280,
+            72,
+            280
+        ],
+        "threshold": 0.17,
+        "action": "Click",
+        "post_delay": 700,
+        "next": [
+            "SeaPalaceRouteByUi"
+        ],
+        "timeout": 4000
+    },
+    "SeaPalaceUiBackOcr": {
+        "recognition": "OCR",
+        "roi": [
+            0,
+            -320,
+            90,
+            320
+        ],
+        "expected": [
+            "返回",
+            "后退"
+        ],
+        "action": "Click",
+        "post_delay": 700,
+        "next": [
+            "SeaPalaceRouteByUi"
+        ],
+        "timeout": 3500
+    },
+    "SeaPalaceUiReadyOcr": {
+        "recognition": "OCR",
+        "roi": [
+            32,
+            -420,
+            656,
+            420
+        ],
+        "expected": [
+            "准备"
+        ],
+        "action": "Click",
+        "post_delay": 1500,
+        "next": [
+            "SeaPalaceStop"
+        ],
+        "timeout": 3500
+    },
+    "SeaPalaceUiMatchOcr": {
+        "recognition": "OCR",
+        "roi": [
+            24,
+            -320,
+            672,
+            320
+        ],
+        "expected": [
+            "匹配"
+        ],
+        "action": "Click",
+        "post_delay": 2000,
+        "next": [
+            "SeaPalaceTapAcceptOcr"
+        ],
+        "timeout": 4000
+    },
+    "SeaPalaceUiSeaRuinsOcr": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            140,
+            688,
+            820
+        ],
+        "expected": [
+            "海之宫遗迹",
+            "海之宫"
+        ],
+        "action": "Click",
+        "post_delay": 1200,
+        "next": [
+            "SeaPalaceSelectDifficulty"
+        ],
+        "timeout": 4500
+    },
+    "SeaPalaceUiNotesTabSelectedBiji2Tmpl": {
+        "recognition": "TemplateMatch",
+        "template": "common/biji2.png",
+        "roi": [
+            96,
+            -300,
+            288,
+            300
+        ],
+        "threshold": 0.52,
+        "order_by": "Score",
+        "action": "DoNothing",
+        "post_delay": 350,
+        "next": [
+            "SeaPalaceUiDailyDungeonOcr",
+            "SeaPalaceUiDailyDungeonOcrGarbage"
+        ],
+        "timeout": 2200,
+        "on_error": [
+            "SeaPalaceRecoverNotesByFixedPos",
+            "SeaPalaceRouteByUi"
+        ]
+    },
+    "SeaPalaceUiNotesTabUnselectedBijiTmpl": {
+        "recognition": "TemplateMatch",
+        "template": "common/biji.png",
+        "roi": [
+            96,
+            -300,
+            288,
+            300
+        ],
+        "threshold": 0.47,
+        "order_by": "Score",
+        "action": "Click",
+        "post_delay": 1600,
+        "next": [
+            "SeaPalaceRouteByUi"
+        ],
+        "timeout": 2200
+    },
+    "SeaPalaceUiDailyDungeonOcr": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            120,
+            688,
+            960
+        ],
+        "expected": [
+            "日常副本"
+        ],
+        "action": "Click",
+        "post_delay": 1400,
+        "next": [
+            "SeaPalaceTapSeaRuinsName"
+        ],
+        "timeout": 4500
+    },
+    "SeaPalaceUiDailyDungeonOcrGarbage": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            120,
+            688,
+            960
+        ],
+        "expected": [
+            "ybjisho",
+            "ybjishom",
+            "jishom"
+        ],
+        "action": "Click",
+        "post_delay": 1400,
+        "next": [
+            "SeaPalaceTapSeaRuinsName"
+        ],
+        "timeout": 4500
+    },
+    "SeaPalaceUiBottomNotesOcr": {
+        "recognition": "OCR",
+        "roi": [
+            0,
+            -240,
+            720,
+            240
+        ],
+        "expected": [
+            "笔记"
+        ],
+        "action": "Click",
+        "post_delay": 1600,
+        "next": [
+            "SeaPalaceRouteByUi"
+        ],
+        "timeout": 2200
+    },
+    "SeaPalaceUiBottomShellTabsOcr": {
+        "recognition": "OCR",
+        "roi": [
+            0,
+            -240,
+            720,
+            240
+        ],
+        "expected": [
+            "探索",
+            "商店",
+            "精彩",
+            "活动",
+            "盟会",
+            "公会"
+        ],
+        "action": "DoNothing",
+        "post_delay": 200,
+        "next": [
+            "SeaPalaceRecoverTapHome"
+        ],
+        "timeout": 4000
+    },
+    "SeaPalaceRecoverTapHome": {
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": [
+            216,
+            -76
+        ],
+        "post_delay": 1400,
+        "next": [
+            "SeaPalaceRecoverBijiLocate",
+            "SeaPalaceRecoverNotesByFixedPos"
+        ],
+        "timeout": 10000,
+        "on_error": [
+            "SeaPalaceRecoverNotesByFixedPos"
+        ]
+    },
+    "SeaPalaceRecoverBijiLocate": {
+        "recognition": "TemplateMatch",
+        "template": "common/biji.png",
+        "roi": [
+            96,
+            -300,
+            288,
+            300
+        ],
+        "threshold": 0.47,
+        "order_by": "Score",
+        "action": "DoNothing",
+        "post_delay": 200,
+        "next": [
+            "SeaPalaceRecoverBijiClick"
+        ],
+        "timeout": 2200
+    },
+    "SeaPalaceRecoverBijiClick": {
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": "SeaPalaceRecoverBijiLocate",
+        "pre_delay": 350,
+        "repeat": 2,
+        "repeat_delay": 250,
+        "post_delay": 1400,
+        "next": [
+            "SeaPalaceRouteByUi"
+        ],
+        "timeout": 5000,
+        "on_error": [
+            "SeaPalaceRecoverNotesByFixedPos"
+        ]
+    },
+    "SeaPalaceRecoverNotesByFixedPos": {
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": [
+            216,
+            -76
+        ],
+        "post_delay": 1200,
+        "next": [
+            "SeaPalaceRouteByUi"
+        ],
+        "timeout": 10000,
+        "on_error": [
+            "SeaPalaceRouteByUi"
+        ]
+    },
+    "SeaPalaceTapSeaRuinsName": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            140,
+            688,
+            820
+        ],
+        "expected": [
+            "海之宫遗迹",
+            "海之宫"
+        ],
+        "action": "Click",
+        "post_delay": 1200,
+        "next": [
+            "SeaPalaceSelectDifficulty"
+        ],
+        "timeout": 15000,
+        "on_error": [
+            "SeaPalaceSwipeListForRuins"
+        ]
+    },
+    "SeaPalaceSwipeListForRuins": {
+        "recognition": "DirectHit",
+        "action": "Swipe",
+        "begin": [
+            360,
+            620
+        ],
+        "end": [
+            360,
+            280
+        ],
+        "duration": 450,
+        "post_delay": 800,
+        "next": [
+            "SeaPalaceTapSeaRuinsNameRetry"
+        ],
+        "timeout": 10000,
+        "on_error": [
+            "SeaPalaceTapSeaRuinsNameRetry"
+        ]
+    },
+    "SeaPalaceTapSeaRuinsNameRetry": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            140,
+            688,
+            820
+        ],
+        "expected": [
+            "海之宫遗迹",
+            "海之宫"
+        ],
+        "action": "Click",
+        "post_delay": 1200,
+        "next": [
+            "SeaPalaceSelectDifficulty"
+        ],
+        "timeout": 15000,
+        "on_error": [
+            "SeaPalaceRouteByUi"
+        ]
+    },
+    "SeaPalaceSelectDifficulty": {
+        "recognition": "OCR",
+        "roi": [
+            0,
+            -220,
+            720,
+            220
+        ],
+        "expected": [
+            "普通"
+        ],
+        "action": "Click",
+        "post_delay": 900,
+        "next": [
+            "SeaPalaceTapMatch"
+        ],
+        "timeout": 12000,
+        "on_error": [
+            "SeaPalaceRouteByUi"
+        ]
+    },
+    "SeaPalaceTapMatch": {
+        "recognition": "OCR",
+        "roi": [
+            24,
+            -320,
+            672,
+            320
+        ],
+        "expected": [
+            "匹配"
+        ],
+        "action": "Click",
+        "post_delay": 2000,
+        "next": [
+            "SeaPalaceMatchLoop"
+        ],
+        "timeout": 15000,
+        "on_error": [
+            "SeaPalaceRouteByUi"
+        ]
+    },
+    "SeaPalaceMatchLoop": {
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 500,
+        "next": [
+            "SeaPalaceTapAcceptOcr",
+            "SeaPalaceUiReadyOcr",
+            "SeaPalaceMatchLoop"
+        ],
+        "timeout": 240000,
+        "on_error": [
+            "SeaPalaceTapMatch"
+        ]
+    },
+    "SeaPalaceTapAcceptOcr": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            -440,
+            688,
+            440
+        ],
+        "expected": [
+            "接受"
+        ],
+        "action": "Click",
+        "post_delay": 1200,
+        "next": [
+            "SeaPalaceMatchLoop"
+        ],
+        "timeout": 5000,
+        "on_error": [
+            "SeaPalaceMatchLoop"
+        ]
+    },
+    "SeaPalaceStop": {
+        "recognition": "DirectHit",
+        "action": "StopTask"
+    },
+    "DungeonLeaderMode": {
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 500,
+        "next": [
+            "DungeonLeaderRouteByUi"
+        ],
+        "timeout": 5000,
+        "on_error": [
+            "DungeonBattlePrepStop"
+        ]
+    },
+    "DungeonLeaderRouteByUi": {
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 350,
+        "next": [
+            "DungeonUiStartBattleOcr",
+            "DungeonUiInviteOcr",
+            "DungeonUiBackIconTmpl",
+            "DungeonUiBackOcr"
+        ],
+        "timeout": 10000,
+        "on_error": [
+            "DungeonBattlePrepStop"
+        ]
+    },
+    "DungeonUiStartBattleOcr": {
+        "recognition": "OCR",
+        "roi": [
+            24,
+            -320,
+            672,
+            320
+        ],
+        "expected": [
+            "开始战斗",
+            "开始"
+        ],
+        "action": "Click",
+        "post_delay": 1500,
+        "next": [
+            "DungeonLeaderWaitLoop"
+        ],
+        "timeout": 4000
+    },
+    "DungeonUiInviteOcr": {
+        "recognition": "OCR",
+        "roi": [
+            24,
+            -320,
+            672,
+            320
+        ],
+        "expected": [
+            "邀请"
+        ],
+        "action": "Click",
+        "post_delay": 1500,
+        "next": [
+            "DungeonLeaderRouteByUi"
+        ],
+        "timeout": 4000
+    },
+    "DungeonLeaderWaitLoop": {
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 500,
+        "next": [
+            "DungeonUiReadyOcr",
+            "DungeonLeaderWaitLoop"
+        ],
+        "timeout": 300000,
+        "on_error": [
+            "DungeonBattlePrepStop"
+        ]
+    },
+    "DungeonMemberMode": {
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 500,
+        "next": [
+            "DungeonMemberWaitLoop"
+        ],
+        "timeout": 5000,
+        "on_error": [
+            "DungeonBattlePrepStop"
+        ]
+    },
+    "DungeonMemberWaitLoop": {
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 500,
+        "next": [
+            "DungeonUiReadyOcr",
+            "DungeonMemberWaitLoop"
+        ],
+        "timeout": 300000,
+        "on_error": [
+            "DungeonBattlePrepStop"
+        ]
+    },
+    "DungeonTapScreenArea": {
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": [
+            360,
+            576
+        ],
+        "post_delay": 2500,
+        "next": [
+            "DungeonBattlePopupRoute"
+        ],
+        "timeout": 5000,
+        "on_error": [
+            "DungeonBattlePrepStop"
+        ],
+        "focus": {
+            "Node.PipelineNode.Succeeded": "正在开启副本弹窗"
+        }
+    },
+    "DungeonBattlePopupRoute": {
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 800,
+        "next": [
+            "DungeonBattlePopupMatchOcr",
+            "DungeonBattlePopupNormalOcr",
+            "DungeonBattlePopupHardOcr",
+            "DungeonBattlePopupBackIconTmpl",
+            "DungeonBattlePopupBackOcr"
+        ],
+        "timeout": 10000,
+        "on_error": [
+            "DungeonBattlePrepStop"
+        ]
+    },
+    "DungeonBattlePopupBackIconTmpl": {
+        "recognition": "TemplateMatch",
+        "template": "common/fanhui.png",
+        "roi": [
+            0,
+            -280,
+            72,
+            280
+        ],
+        "threshold": 0.55,
+        "action": "Click",
+        "post_delay": 700,
+        "next": [
+            "DungeonBattlePrepStop"
+        ],
+        "timeout": 4000
+    },
+    "DungeonBattlePopupBackOcr": {
+        "recognition": "OCR",
+        "roi": [
+            0,
+            -320,
+            90,
+            320
+        ],
+        "expected": [
+            "返回",
+            "后退"
+        ],
+        "action": "Click",
+        "post_delay": 700,
+        "next": [
+            "DungeonBattlePrepStop"
+        ],
+        "timeout": 3500
+    },
+    "DungeonBattlePopupNormalOcr": {
+        "recognition": "OCR",
+        "roi": [
+            0,
+            -220,
+            720,
+            220
+        ],
+        "expected": [
+            "普通"
+        ],
+        "action": "Click",
+        "post_delay": 900,
+        "next": [
+            "DungeonBattlePopupRoute"
+        ],
+        "timeout": 4000,
+        "focus": {
+            "Node.PipelineNode.Succeeded": "选择普通难度"
+        }
+    },
+    "DungeonBattlePopupHardOcr": {
+        "recognition": "OCR",
+        "roi": [
+            0,
+            -220,
+            720,
+            220
+        ],
+        "expected": [
+            "困难"
+        ],
+        "action": "Click",
+        "post_delay": 900,
+        "next": [
+            "DungeonBattlePopupRoute"
+        ],
+        "timeout": 4000,
+        "focus": {
+            "Node.PipelineNode.Succeeded": "选择困难难度"
+        }
+    },
+    "DungeonBattlePopupMatchOcr": {
+        "recognition": "OCR",
+        "roi": [
+            24,
+            -320,
+            672,
+            320
+        ],
+        "expected": [
+            "匹配"
+        ],
+        "action": "Click",
+        "post_delay": 2000,
+        "next": [
+            "DungeonBattleMatchLoop"
+        ],
+        "timeout": 4000,
+        "focus": {
+            "Node.PipelineNode.Succeeded": "副本弹窗已弹出，开始匹配"
+        }
+    },
+    "DungeonBattleTapMatch": {
+        "recognition": "OCR",
+        "roi": [
+            24,
+            -320,
+            672,
+            320
+        ],
+        "expected": [
+            "匹配"
+        ],
+        "action": "Click",
+        "post_delay": 2000,
+        "next": [
+            "DungeonBattleMatchLoop"
+        ],
+        "timeout": 15000,
+        "on_error": [
+            "DungeonBattleMatchLoop"
+        ]
+    },
+    "DungeonBattleMatchLoop": {
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 500,
+        "next": [
+            "DungeonBattleTapAcceptOcr",
+            "DungeonBattleUiReadyOcr",
+            "DungeonBattleSettleDetect",
+            "DungeonBattleMatchLoop"
+        ],
+        "timeout": 240000,
+        "on_error": [
+            "DungeonBattlePopupMatchOcr"
+        ]
+    },
+    "DungeonBattleTapAcceptOcr": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            -440,
+            688,
+            440
+        ],
+        "expected": [
+            "接受"
+        ],
+        "action": "Click",
+        "post_delay": 1200,
+        "next": [
+            "DungeonBattleUiReadyOcr"
+        ],
+        "timeout": 5000,
+        "on_error": [
+            "DungeonBattleMatchLoop"
+        ],
+        "focus": {
+            "Node.PipelineNode.Succeeded": "接受匹配邀请"
+        }
+    },
+    "DungeonBattleUiReadyOcr": {
+        "recognition": "OCR",
+        "roi": [
+            32,
+            -170,
+            656,
+            170
+        ],
+        "expected": [
+            "准备"
+        ],
+        "action": "Click",
+        "post_delay": 1500,
+        "next": [
+            "DungeonBattleWaitEnd"
+        ],
+        "timeout": 3500,
+        "on_error": [
+            "DungeonBattleMatchLoop"
+        ],
+        "focus": {
+            "Node.PipelineNode.Succeeded": "识别到准备按钮，进入对局"
+        }
+    },
+    "DungeonBattleWaitEnd": {
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 3000,
+        "next": [
+            "DungeonBattleLikeTeam",
+            "DungeonBattleWaitEnd"
+        ],
+        "timeout": 600000,
+        "on_error": [
+            "DungeonBattlePrepStop"
+        ]
+    },
+    "DungeonBattleLikeTeam": {
+        "recognition": "TemplateMatch",
+        "template": "common/dianzan.png",
+        "roi": [
+            0,
+            630,
+            720,
+            280
+        ],
+        "threshold": 0.7,
+        "action": "Click",
+        "post_delay": 600,
+        "next": [
+            "DungeonBattleLikeTeam",
+            "DungeonBattleClaimRewardOcr"
+        ],
+        "timeout": 4000,
+        "on_error": [
+            "DungeonBattleClaimRewardOcr"
+        ],
+        "focus": {
+            "Node.PipelineNode.Succeeded": "对局结束，正在点赞队友"
+        }
+    },
+    "DungeonBattleClaimRewardOcr": {
+        "recognition": "OCR",
+        "roi": [
+            16,
+            1150,
+            688,
+            130
+        ],
+        "expected": [
+            "领取奖励"
+        ],
+        "action": "Click",
+        "post_delay": 1200,
+        "next": [
+            "DungeonBattleTapTopArea"
+        ],
+        "timeout": 10000,
+        "on_error": [
+            "DungeonBattleTapTopArea"
+        ],
+        "focus": {
+            "Node.PipelineNode.Succeeded": "领取对战奖励"
+        }
+    },
+    "DungeonBattleSettleDetect": {
+        "recognition": "OCR",
+        "roi": [
+            0,
+            820,
+            200,
+            100
+        ],
+        "expected": [
+            "掉落奖励"
+        ],
+        "action": "DoNothing",
+        "post_delay": 0,
+        "next": [
+            "DungeonBattleLikeTeam"
+        ],
+        "timeout": 3500,
+        "focus": {
+            "Node.PipelineNode.Succeeded": "检测到结算页，准备点赞"
+        }
+    },
+    "DungeonBattleTapTopArea": {
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": [
+            35,
+            1210
+        ],
+        "post_delay": 1500,
+        "next": [
+            "DungeonBattleConfirmExitOcr",
+            "DungeonBattlePrepStop"
+        ],
+        "timeout": 5000,
+        "on_error": [
+            "DungeonBattlePrepStop"
+        ],
+        "focus": {
+            "Node.PipelineNode.Succeeded": "点击返回，退出结算页"
+        }
+    },
+    "DungeonBattleConfirmExitOcr": {
+        "recognition": "OCR",
+        "roi": [
+            100,
+            700,
+            520,
+            400
+        ],
+        "expected": [
+            "确认"
+        ],
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "DungeonBattlePrepStop"
+        ],
+        "timeout": 5000,
+        "on_error": [
+            "DungeonBattlePrepStop"
+        ]
+    }
 }
