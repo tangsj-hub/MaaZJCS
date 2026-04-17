@@ -279,7 +279,14 @@
                     "label": "$opt_like_team_skip",
                     "pipeline_override": {
                         "DungeonBattleLikeTeam": {
-                            "action": "DoNothing"
+                            "recognition": "DirectHit",
+                            "action": "DoNothing",
+                            "next": [
+                                "DungeonBattleClaimRewardOcr"
+                            ],
+                            "on_error": [
+                                "DungeonBattleClaimRewardOcr"
+                            ]
                         }
                     }
                 }
@@ -308,8 +315,12 @@
                     "label": "$opt_claim_reward_skip",
                     "pipeline_override": {
                         "DungeonBattleClaimRewardOcr": {
+                            "recognition": "DirectHit",
                             "action": "DoNothing",
                             "next": [
+                                "DungeonBattleTapTopArea"
+                            ],
+                            "on_error": [
                                 "DungeonBattleTapTopArea"
                             ]
                         }
