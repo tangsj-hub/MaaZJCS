@@ -40,7 +40,29 @@ std::vector<AdbDevice> AdbDeviceFinder::find() const
             if (accurate_serials.count(dev.serial)) {
                 continue;
             }
+            accurate_serials.emplace(dev.serial);
             result.emplace_back(std::move(dev));
+        }
+
+        // Fallback: some emulators (e.g. MuMuPlayerPro on macOS) won't appear in
+        // `adb devices` until an explicit `adb connect host:port` is issued.
+        // Probe each well-known serial directly; try_device() invokes
+        // control_unit->connect() which performs the connect for us.
+        const auto& const_data = get_emulator_const_data();
+        auto it = const_data.find(e.name);
+        if (it == const_data.cend()) {
+            continue;
+        }
+        for (const std::string& ser : it->second.adb_common_serials) {
+            if (accurate_serials.count(ser)) {
+                continue;
+            }
+            auto dev_opt = try_device(e.adb_path, ser, e);
+            if (!dev_opt) {
+                continue;
+            }
+            accurate_serials.emplace(dev_opt->serial);
+            result.emplace_back(std::move(*dev_opt));
         }
     }
 
