@@ -1169,6 +1169,7 @@
             "DungeonBattlePopupNormalOcr",
             "DungeonBattlePopupHardOcr",
             "DungeonBattlePopupNightmareOcr",
+            "DungeonBattlePopupPurgatoryOcr",
             "DungeonBattlePopupBackIconTmpl",
             "DungeonBattlePopupBackOcr"
         ],
@@ -1274,6 +1275,27 @@
         "timeout": 4000,
         "focus": {
             "Node.PipelineNode.Succeeded": "选择噩梦难度"
+        }
+    },
+    "DungeonBattlePopupPurgatoryOcr": {
+        "recognition": "OCR",
+        "roi": [
+            0,
+            0,
+            720,
+            200
+        ],
+        "expected": [
+            "炼狱"
+        ],
+        "action": "Click",
+        "post_delay": 900,
+        "next": [
+            "DungeonBattlePopupRoute"
+        ],
+        "timeout": 4000,
+        "focus": {
+            "Node.PipelineNode.Succeeded": "选择炼狱难度"
         }
     },
     "DungeonBattlePopupMatchOcr": {

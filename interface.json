@@ -108,10 +108,11 @@
             "entry": "DungeonBattlePrepEntry",
             "description": "$task_dungeon_battle_prep_desc",
             "option": [
+                "dungeon_type",
+                "dungeon_difficulty",
                 "battle_mode",
                 "click_ready",
                 "claim_reward",
-                "dungeon_difficulty",
                 "like_team",
                 "check_hp",
                 "hp_threshold"
@@ -144,6 +145,21 @@
                                 "世界之树",
                                 "世界树"
                             ]
+                        },
+                        "DungeonSelectDifficulty": {
+                            "expected": [
+                                "普通"
+                            ]
+                        },
+                        "DungeonBattlePopupNormalOcr": {
+                            "expected": [
+                                "普通"
+                            ]
+                        },
+                        "DungeonBattlePopupHardOcr": {
+                            "expected": [
+                                "困难"
+                            ]
                         }
                     }
                 },
@@ -160,6 +176,21 @@
                                 "机神山",
                                 "机神"
                             ]
+                        },
+                        "DungeonSelectDifficulty": {
+                            "expected": [
+                                "普通"
+                            ]
+                        },
+                        "DungeonBattlePopupNormalOcr": {
+                            "expected": [
+                                "普通"
+                            ]
+                        },
+                        "DungeonBattlePopupHardOcr": {
+                            "expected": [
+                                "困难"
+                            ]
                         }
                     }
                 },
@@ -175,6 +206,21 @@
                             "expected": [
                                 "海之宫遗迹",
                                 "海之宫"
+                            ]
+                        },
+                        "DungeonSelectDifficulty": {
+                            "expected": [
+                                "普通"
+                            ]
+                        },
+                        "DungeonBattlePopupNormalOcr": {
+                            "expected": [
+                                "普通"
+                            ]
+                        },
+                        "DungeonBattlePopupHardOcr": {
+                            "expected": [
+                                "困难"
                             ]
                         }
                     }
@@ -193,6 +239,69 @@
                                 "源水大社",
                                 "源水"
                             ]
+                        },
+                        "DungeonSelectDifficulty": {
+                            "expected": [
+                                "普通"
+                            ]
+                        },
+                        "DungeonBattlePopupNormalOcr": {
+                            "expected": [
+                                "普通"
+                            ]
+                        },
+                        "DungeonBattlePopupHardOcr": {
+                            "expected": [
+                                "困难"
+                            ]
+                        },
+                        "DungeonBattlePopupNightmareOcr": {
+                            "expected": [
+                                "噩梦"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "yellow_spring_pavilion",
+                    "label": "$opt_dungeon_type_yellow_spring_pavilion",
+                    "available_difficulties": [
+                        "normal",
+                        "hard",
+                        "nightmare",
+                        "purgatory"
+                    ],
+                    "pipeline_override": {
+                        "DungeonTapDungeonName": {
+                            "expected": [
+                                "黄泉阁",
+                                "黄泉"
+                            ]
+                        },
+                        "DungeonSelectDifficulty": {
+                            "expected": [
+                                "普通"
+                            ]
+                        },
+                        "DungeonBattlePopupNormalOcr": {
+                            "expected": [
+                                "普通"
+                            ]
+                        },
+                        "DungeonBattlePopupHardOcr": {
+                            "expected": [
+                                "困难"
+                            ]
+                        },
+                        "DungeonBattlePopupNightmareOcr": {
+                            "expected": [
+                                "噩梦"
+                            ]
+                        },
+                        "DungeonBattlePopupPurgatoryOcr": {
+                            "expected": [
+                                "炼狱"
+                            ]
                         }
                     }
                 }
@@ -208,14 +317,9 @@
                     "name": "normal",
                     "label": "$opt_dungeon_difficulty_normal",
                     "pipeline_override": {
-                        "DungeonSelectDifficulty": {
-                            "expected": [
-                                "普通"
-                            ]
-                        },
-                        "DungeonBattlePopupNormalOcr": {
-                            "expected": [
-                                "普通"
+                        "DungeonBattlePopupRoute": {
+                            "next": [
+                                "DungeonBattlePopupNormalOcr"
                             ]
                         }
                     }
@@ -224,14 +328,9 @@
                     "name": "hard",
                     "label": "$opt_dungeon_difficulty_hard",
                     "pipeline_override": {
-                        "DungeonSelectDifficulty": {
-                            "expected": [
-                                "困难"
-                            ]
-                        },
-                        "DungeonBattlePopupHardOcr": {
-                            "expected": [
-                                "困难"
+                        "DungeonBattlePopupRoute": {
+                            "next": [
+                                "DungeonBattlePopupHardOcr"
                             ]
                         }
                     }
@@ -240,14 +339,20 @@
                     "name": "nightmare",
                     "label": "$opt_dungeon_difficulty_nightmare",
                     "pipeline_override": {
-                        "DungeonSelectDifficulty": {
-                            "expected": [
-                                "噩梦"
+                        "DungeonBattlePopupRoute": {
+                            "next": [
+                                "DungeonBattlePopupNightmareOcr"
                             ]
-                        },
-                        "DungeonBattlePopupNightmareOcr": {
-                            "expected": [
-                                "噩梦"
+                        }
+                    }
+                },
+                {
+                    "name": "purgatory",
+                    "label": "$opt_dungeon_difficulty_purgatory",
+                    "pipeline_override": {
+                        "DungeonBattlePopupRoute": {
+                            "next": [
+                                "DungeonBattlePopupPurgatoryOcr"
                             ]
                         }
                     }
@@ -267,16 +372,6 @@
                         "DungeonBattleHpGate": {
                             "next": [
                                 "DungeonTapScreenArea"
-                            ]
-                        },
-                        "DungeonBattlePopupRoute": {
-                            "next": [
-                                "DungeonBattlePopupNormalOcr",
-                                "DungeonBattlePopupHardOcr",
-                                "DungeonBattlePopupNightmareOcr",
-                                "DungeonBattlePopupMatchOcr",
-                                "DungeonBattlePopupBackIconTmpl",
-                                "DungeonBattlePopupBackOcr"
                             ]
                         },
                         "DungeonBattlePopupNormalOcr": {
@@ -305,15 +400,6 @@
                                 "DungeonLeaderMode"
                             ]
                         },
-                        "DungeonBattlePopupRoute": {
-                            "next": [
-                                "DungeonBattlePopupNormalOcr",
-                                "DungeonBattlePopupHardOcr",
-                                "DungeonBattlePopupNightmareOcr",
-                                "DungeonBattlePopupBackIconTmpl",
-                                "DungeonBattlePopupBackOcr"
-                            ]
-                        },
                         "DungeonBattlePopupNormalOcr": {
                             "next": [
                                 "DungeonUiStartBattleOcr"
@@ -338,6 +424,21 @@
                         "DungeonBattleHpGate": {
                             "next": [
                                 "DungeonMemberMode"
+                            ]
+                        },
+                        "DungeonBattlePopupNormalOcr": {
+                            "next": [
+                                "DungeonUiStartBattleOcr"
+                            ]
+                        },
+                        "DungeonBattlePopupHardOcr": {
+                            "next": [
+                                "DungeonUiStartBattleOcr"
+                            ]
+                        },
+                        "DungeonBattlePopupNightmareOcr": {
+                            "next": [
+                                "DungeonUiStartBattleOcr"
                             ]
                         }
                     }
@@ -381,11 +482,11 @@
             "type": "select",
             "label": "$opt_click_ready",
             "description": "$opt_click_ready_desc",
-            "default_case": "skip",
+            "default_case": "no",
             "cases": [
                 {
-                    "name": "skip",
-                    "label": "$opt_click_ready_skip",
+                    "name": "no",
+                    "label": "$opt_click_ready_no",
                     "pipeline_override": {
                         "DungeonBattleMatchLoop": {
                             "next": [
@@ -405,8 +506,8 @@
                     }
                 },
                 {
-                    "name": "click",
-                    "label": "$opt_click_ready_click",
+                    "name": "yes",
+                    "label": "$opt_click_ready_yes",
                     "pipeline_override": {
                         "DungeonBattleMatchLoop": {
                             "next": [
