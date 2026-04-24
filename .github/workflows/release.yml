@@ -89,9 +89,9 @@ jobs:
             - id: login
               uses: NuGet/login@v1
               with:
-                user: moomiji
-                token-service-url: ${{ env.NUGET_AUDIENCE }}/api/v2/token
-                audience: ${{ env.NUGET_AUDIENCE }}
+                  user: moomiji
+                  token-service-url: ${{ env.NUGET_AUDIENCE }}/api/v2/token
+                  audience: ${{ env.NUGET_AUDIENCE }}
 
             - name: Publish NuGet
               id: publish
@@ -179,17 +179,41 @@ jobs:
                   check_artifacts: true
                   if_no_artifact_found: fail
 
+            - name: Download GUI releases
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  # 获取 GUI 仓库的最新 Release
+                  GUI_TAG=$(gh release view --repo tangsj-hub/MaaZJCS_GUI --json tagName -q '.tagName' 2>/dev/null || echo "")
+
+                  if [ -n "$GUI_TAG" ]; then
+                    echo "Downloading GUI release: $GUI_TAG"
+                    gh release download "$GUI_TAG" --repo tangsj-hub/MaaZJCS_GUI --dir gui-assets --pattern "*"
+                  else
+                    echo "No GUI release found, skipping GUI download"
+                    mkdir -p gui-assets
+                  fi
+
             - name: Package artifacts
               run: |
                   cd assets
                   for f in *; do
-                    (cd $f && zip -r ../$f-${{ needs.meta.outputs.tag }}.zip .)
+                    (cd $f && zip -r ../MaaZJCS-$f-${{ needs.meta.outputs.tag }}.zip .)
+                  done
+
+            - name: Package GUI artifacts
+              run: |
+                  cd gui-assets
+                  for f in *; do
+                    mv "$f" "../../MaaZJCS-GUI-$f"
                   done
 
             - id: publish
               uses: softprops/action-gh-release@v2
               with:
-                  files: assets/*.zip
+                  files: |
+                      assets/*.zip
+                      MaaZJCS-GUI-*
                   tag_name: ${{ inputs.dry-run && 'v0.0.0' || needs.meta.outputs.tag }}
                   prerelease: ${{ needs.meta.outputs.is-prerelease == 'true' }}
                   body: ${{ needs.changelog.outputs.release_body }}
@@ -197,8 +221,8 @@ jobs:
     mirrorchyan:
         needs: [meta, github]
         if: always() && needs.meta.result == 'success' && (
-                inputs.only-publish-to == 'MirrorChyan' ||
-                inputs.only-publish-to == 'All'
+            inputs.only-publish-to == 'MirrorChyan' ||
+            inputs.only-publish-to == 'All'
             )
         continue-on-error: ${{ inputs.only-publish-to == 'All' }}
         runs-on: ubuntu-latest
@@ -208,7 +232,7 @@ jobs:
             - name: Trigger MirrorChyanUploading
               id: publish
               if: inputs.only-publish-to == 'MirrorChyan' ||
-                ( inputs.only-publish-to == 'All' && needs.github.outputs.result == 'success' ) 
+                  ( inputs.only-publish-to == 'All' && needs.github.outputs.result == 'success' )
               env:
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
@@ -224,11 +248,11 @@ jobs:
         needs: [meta, changelog, nuget, nodejs, pip, github, mirrorchyan]
         runs-on: ubuntu-latest
         if: success() && (
-                needs.nuget.outputs.result != 'success'  ||
-                needs.nodejs.outputs.result != 'success' ||
-                needs.pip.outputs.result != 'success'    ||
-                needs.github.outputs.result != 'success' ||
-                needs.mirrorchyan.outputs.result != 'success'
+            needs.nuget.outputs.result != 'success'  ||
+            needs.nodejs.outputs.result != 'success' ||
+            needs.pip.outputs.result != 'success'    ||
+            needs.github.outputs.result != 'success' ||
+            needs.mirrorchyan.outputs.result != 'success'
             )
         env:
             ISSUE_TITLE: "${{ needs.meta.outputs.tag }} failed to release"
