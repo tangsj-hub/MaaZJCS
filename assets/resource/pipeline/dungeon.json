@@ -1055,6 +1055,7 @@
         "action": "DoNothing",
         "post_delay": 350,
         "next": [
+            "DungeonBattlePopupRoute",
             "DungeonUiStartBattleOcr",
             "DungeonUiInviteOcr",
             "DungeonUiBackIconTmpl",
@@ -1167,6 +1168,7 @@
             "DungeonBattlePopupMatchOcr",
             "DungeonBattlePopupNormalOcr",
             "DungeonBattlePopupHardOcr",
+            "DungeonBattlePopupNightmareOcr",
             "DungeonBattlePopupBackIconTmpl",
             "DungeonBattlePopupBackOcr"
         ],
@@ -1215,9 +1217,9 @@
         "recognition": "OCR",
         "roi": [
             0,
-            -220,
+            0,
             720,
-            220
+            200
         ],
         "expected": [
             "普通"
@@ -1236,9 +1238,9 @@
         "recognition": "OCR",
         "roi": [
             0,
-            -220,
+            0,
             720,
-            220
+            200
         ],
         "expected": [
             "困难"
@@ -1251,6 +1253,27 @@
         "timeout": 4000,
         "focus": {
             "Node.PipelineNode.Succeeded": "选择困难难度"
+        }
+    },
+    "DungeonBattlePopupNightmareOcr": {
+        "recognition": "OCR",
+        "roi": [
+            0,
+            0,
+            720,
+            200
+        ],
+        "expected": [
+            "噩梦"
+        ],
+        "action": "Click",
+        "post_delay": 900,
+        "next": [
+            "DungeonBattlePopupRoute"
+        ],
+        "timeout": 4000,
+        "focus": {
+            "Node.PipelineNode.Succeeded": "选择噩梦难度"
         }
     },
     "DungeonBattlePopupMatchOcr": {
@@ -1300,6 +1323,7 @@
         "action": "DoNothing",
         "post_delay": 500,
         "next": [
+            "DungeonBattleLoadingOcr",
             "DungeonBattleTapAcceptOcr",
             "DungeonBattleUiReadyOcr",
             "DungeonBattleSettleDetect",
@@ -1309,6 +1333,48 @@
         "on_error": [
             "DungeonBattlePopupMatchOcr"
         ]
+    },
+    "DungeonBattleLoadingOcr": {
+        "recognition": "OCR",
+        "roi": [
+            0,
+            -100,
+            720,
+            100
+        ],
+        "expected": [
+            "加载中"
+        ],
+        "action": "DoNothing",
+        "post_delay": 1000,
+        "next": [
+            "DungeonBattleMatchLoop"
+        ],
+        "timeout": 60000,
+        "focus": {
+            "Node.PipelineNode.Succeeded": "检测到加载中，等待加载完成"
+        }
+    },
+    "DungeonBattleCancelReadyOcr": {
+        "recognition": "OCR",
+        "roi": [
+            200,
+            -400,
+            320,
+            150
+        ],
+        "expected": [
+            "取消准备"
+        ],
+        "action": "DoNothing",
+        "post_delay": 500,
+        "next": [
+            "DungeonBattleInRoomLoop"
+        ],
+        "timeout": 3500,
+        "focus": {
+            "Node.PipelineNode.Succeeded": "检测到取消准备，已在房间内"
+        }
     },
     "DungeonBattleTapAcceptOcr": {
         "recognition": "OCR",
@@ -1337,10 +1403,10 @@
     "DungeonBattleUiReadyOcr": {
         "recognition": "OCR",
         "roi": [
-            32,
-            -170,
-            656,
-            170
+            200,
+            -400,
+            320,
+            150
         ],
         "expected": [
             "准备"
@@ -1348,7 +1414,7 @@
         "action": "Click",
         "post_delay": 1500,
         "next": [
-            "DungeonBattleWaitEnd"
+            "DungeonBattleInRoomLoop"
         ],
         "timeout": 3500,
         "on_error": [
@@ -1357,6 +1423,19 @@
         "focus": {
             "Node.PipelineNode.Succeeded": "识别到准备按钮，进入对局"
         }
+    },
+    "DungeonBattleInRoomLoop": {
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 500,
+        "next": [
+            "DungeonBattleSettleDetect",
+            "DungeonBattleInRoomLoop"
+        ],
+        "timeout": 240000,
+        "on_error": [
+            "DungeonBattlePrepStop"
+        ]
     },
     "DungeonBattleWaitEnd": {
         "recognition": "DirectHit",

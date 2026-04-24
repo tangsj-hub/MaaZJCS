@@ -1,11 +1,127 @@
 {
   "DungeonBattlePrepEntry": {
     "next": [
-      "DungeonBattlePrepBegin"
+      "DungeonHpLowCheck",
+      "DungeonBattleHpGate"
     ],
     "timeout": 300000,
     "on_error": [
       "DungeonBattlePrepStop"
+    ]
+  },
+  "DungeonBattleHpGate": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 0,
+    "next": [
+      "DungeonBattlePrepBegin"
+    ],
+    "timeout": 1000,
+    "on_error": [
+      "DungeonBattlePrepStop"
+    ]
+  },
+  "DungeonHpLowCheck": {
+    "recognition": "ColorMatch",
+    "roi": [
+      195,
+      45,
+      60,
+      25
+    ],
+    "method": 4,
+    "lower": [
+      30,
+      30,
+      30
+    ],
+    "upper": [
+      80,
+      80,
+      85
+    ],
+    "count": 180,
+    "enabled": false,
+    "action": "DoNothing",
+    "post_delay": 300,
+    "next": [
+      "DungeonHpHealOpenCharPanel"
+    ],
+    "timeout": 2000,
+    "focus": {
+      "Node.PipelineNode.Succeeded": "检测到血量偏低，开始回血"
+    }
+  },
+  "DungeonHpHealOpenCharPanel": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      93,
+      55
+    ],
+    "post_delay": 2000,
+    "next": [
+      "DungeonHpHealOneKeyOcr"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DungeonHpCloseCharPanel"
+    ]
+  },
+  "DungeonHpHealOneKeyOcr": {
+    "recognition": "OCR",
+    "roi": [
+      300,
+      1010,
+      320,
+      100
+    ],
+    "expected": [
+      "一键治疗"
+    ],
+    "action": "Click",
+    "post_delay": 1500,
+    "next": [
+      "DungeonHpCloseCharPanel"
+    ],
+    "timeout": 5000,
+    "on_error": [
+      "DungeonHpCloseCharPanel"
+    ],
+    "focus": {
+      "Node.PipelineNode.Succeeded": "点击一键治疗"
+    }
+  },
+  "DungeonHpCloseCharPanel": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      360,
+      40
+    ],
+    "post_delay": 1200,
+    "next": [
+      "DungeonHpCloseCharPanelRetry"
+    ],
+    "timeout": 3000,
+    "on_error": [
+      "DungeonBattlePrepEntry"
+    ]
+  },
+  "DungeonHpCloseCharPanelRetry": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      360,
+      40
+    ],
+    "post_delay": 1000,
+    "next": [
+      "DungeonBattlePrepEntry"
+    ],
+    "timeout": 3000,
+    "on_error": [
+      "DungeonBattlePrepEntry"
     ]
   },
   "DungeonBattlePrepBegin": {
