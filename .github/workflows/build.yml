@@ -156,19 +156,6 @@ jobs:
               run: |
                   cp -r build/download_plugins/bin install/bin/plugins
 
-            - name: Build GUI (Windows)
-              shell: bash
-              run: |
-                  cd MaaZJCS_GUI
-                  pnpm install
-                  pnpm tauri build
-
-            - name: Upload GUI artifacts (Windows)
-              uses: actions/upload-artifact@v4
-              with:
-                  name: GUI-win-${{ matrix.arch }}
-                  path: MaaZJCS_GUI/src-tauri/target/release/bundle
-
             - uses: actions/upload-artifact@v4
               if: always()
               with:
@@ -264,21 +251,6 @@ jobs:
               shell: bash
               run: |
                   cp -r build/download_plugins/bin install/bin/plugins
-
-            - name: Build GUI (Linux)
-              shell: bash
-              run: |
-                  sudo apt-get update
-                  sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
-                  cd MaaZJCS_GUI
-                  pnpm install
-                  pnpm tauri build
-
-            - name: Upload GUI artifacts (Linux)
-              uses: actions/upload-artifact@v4
-              with:
-                  name: GUI-linux-${{ matrix.arch }}
-                  path: MaaZJCS_GUI/src-tauri/target/release/bundle
 
             - uses: actions/upload-artifact@v4
               if: always()
@@ -379,19 +351,6 @@ jobs:
               shell: bash
               run: |
                   cp -r build/download_plugins/bin install/bin/plugins
-
-            - name: Build GUI (macOS)
-              shell: bash
-              run: |
-                  cd MaaZJCS_GUI
-                  pnpm install
-                  pnpm tauri build
-
-            - name: Upload GUI artifacts (macOS)
-              uses: actions/upload-artifact@v4
-              with:
-                  name: GUI-macos-${{ matrix.arch }}
-                  path: MaaZJCS_GUI/src-tauri/target/release/bundle
 
             - uses: actions/upload-artifact@v4
               if: always()

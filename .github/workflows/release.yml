@@ -179,14 +179,20 @@ jobs:
                   check_artifacts: true
                   if_no_artifact_found: fail
 
-            - uses: dawidd6/action-download-artifact@v6
-              with:
-                  workflow: build.yml
-                  run_id: ${{ inputs.run-id }}
-                  name_is_regexp: true
-                  name: GUI-*
-                  path: gui-assets
-                  check_artifacts: false
+            - name: Download GUI releases
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  # 获取 GUI 仓库的最新 Release
+                  GUI_TAG=$(gh release view --repo tangsj-hub/MaaZJCS_GUI --json tagName -q '.tagName' 2>/dev/null || echo "")
+
+                  if [ -n "$GUI_TAG" ]; then
+                    echo "Downloading GUI release: $GUI_TAG"
+                    gh release download "$GUI_TAG" --repo tangsj-hub/MaaZJCS_GUI --dir gui-assets --pattern "*"
+                  else
+                    echo "No GUI release found, skipping GUI download"
+                    mkdir -p gui-assets
+                  fi
 
             - name: Package artifacts
               run: |
@@ -199,7 +205,7 @@ jobs:
               run: |
                   cd gui-assets
                   for f in *; do
-                    (cd $f && zip -r ../../MaaZJCS-GUI-$f-${{ needs.meta.outputs.tag }}.zip .)
+                    mv "$f" "../../MaaZJCS-GUI-$f"
                   done
 
             - id: publish
@@ -207,7 +213,7 @@ jobs:
               with:
                   files: |
                       assets/*.zip
-                      MaaZJCS-GUI-*.zip
+                      MaaZJCS-GUI-*
                   tag_name: ${{ inputs.dry-run && 'v0.0.0' || needs.meta.outputs.tag }}
                   prerelease: ${{ needs.meta.outputs.is-prerelease == 'true' }}
                   body: ${{ needs.changelog.outputs.release_body }}
