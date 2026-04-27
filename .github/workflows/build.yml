@@ -524,6 +524,64 @@ jobs:
                   name: pkgs-nodejs
                   path: "source/binding/NodeJS/release"
 
+    gui:
+        needs: meta
+        runs-on: ${{ matrix.platform }}
+        strategy:
+            matrix:
+                include:
+                    - platform: windows-latest
+                      name: windows
+                    - platform: ubuntu-latest
+                      name: linux
+                    - platform: macos-latest
+                      name: macos
+            fail-fast: false
+
+        steps:
+            - name: Checkout MaaZJCS_MXU
+              uses: actions/checkout@v4
+              with:
+                  repository: tangsj-hub/MaaZJCS_MXU
+                  ref: ${{ vars.MAAZJCS_MXU_REF || 'main' }}
+
+            - name: Setup Rust
+              uses: dtolnay/rust-toolchain@stable
+              with:
+                  targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+
+            - name: Rust cache
+              uses: swatinem/rust-cache@v2
+              with:
+                  workspaces: "./src-tauri -> target"
+
+            - name: Install dependencies
+              if: matrix.platform == 'ubuntu-latest'
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
+            - name: Use Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+
+            - uses: pnpm/action-setup@v4
+              with:
+                  version: latest
+
+            - name: Install frontend dependencies
+              run: pnpm install
+
+            - name: Build GUI
+              run: pnpm tauri build
+
+            - uses: actions/upload-artifact@v4
+              if: always()
+              with:
+                  name: MaaZJCS-GUI-${{ matrix.name }}
+                  path: "src-tauri/target/release/bundle"
+
     update_submodule:
         if: ${{ github.event_name == 'repository_dispatch' && github.event.action == 'MaaUtilsUpdated' }}
         needs:
@@ -572,6 +630,7 @@ jobs:
                 nuget_pack,
                 pip_pack,
                 nodejs_pack,
+                gui,
             ]
         runs-on: ubuntu-latest
         steps:
