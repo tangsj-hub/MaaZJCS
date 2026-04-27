@@ -544,6 +544,7 @@ jobs:
               with:
                   repository: tangsj-hub/MaaZJCS_MXU
                   ref: ${{ vars.MAAZJCS_MXU_REF || 'main' }}
+                  token: ${{ secrets.MAAZJCS_MXU_TOKEN || github.token }}
 
             - name: Setup Rust
               uses: dtolnay/rust-toolchain@stable
@@ -577,7 +578,6 @@ jobs:
               run: pnpm tauri build
 
             - uses: actions/upload-artifact@v4
-              if: always()
               with:
                   name: MaaZJCS-GUI-${{ matrix.name }}
                   path: "src-tauri/target/release/bundle"
